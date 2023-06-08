@@ -1,0 +1,62 @@
+package com.example.codewizard.api.model;
+
+import java.util.List;
+
+public class Resenia {
+    private int idResenia;
+    private Usuario usuario;
+    private String descripcion;
+    private int valoracion;
+    private boolean activa;
+
+    public Resenia() {
+    }
+
+    public Resenia(int idResenia, Usuario usuario, String descripcion, int valoracion, boolean activa) {
+        this.idResenia = idResenia;
+        this.usuario = usuario;
+        this.descripcion = descripcion;
+        this.valoracion = valoracion;
+        this.activa = activa;
+    }
+
+    public int getIdResenia() {
+        return idResenia;
+    }
+
+    public void setIdResenia(int idResenia) {
+        this.idResenia = idResenia;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
+    }
+
+    public boolean isActiva() {
+        return activa;
+    }
+
+    public void setActiva(boolean activa) {
+        this.activa = activa;
+    }
+}
