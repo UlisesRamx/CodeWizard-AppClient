@@ -2,6 +2,24 @@ package com.example.codewizard.api;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -9,36 +27,57 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ApiClient {
-    private static final String URL = "your_api_url";
+    private static final String URL = "https://codewizards-api.panther14.repl.co";
 
-    public void doRequest(){
-        try{
-            OkHttpClient client = new OkHttpClient().newBuilder()
-                    .build();
-            MediaType mediaType = MediaType.parse("text/plain");
-            RequestBody body = RequestBody.create(mediaType, "");
-            Request request = new Request.Builder()
-                    .url("https://codewizards-api.panther14.repl.co/api/books/findbook/Overlord")
-                    .method("GET", body)
-                    .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiUGFudGhlciJ9LCJpYXQiOjE2ODYxODAyMDEsImV4cCI6MTY4NjE4MzgwMX0.ezIn0Ze0uT8qp2ZUP2kSaKMRY6ORMs2HsPN1ajHS_iQ")
-                    .build();
-            Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
-                String jsonString = response.body().string();
-                Gson gson = new Gson();
-                ApiResponse myResponse = gson.fromJson(jsonString, ApiResponse.class);
+    public static CompletableFuture<ApiResponse> sendRequest(String endpoint, HttpMethod httpMethod, String authMethod,
+                                                             String credentials, Object... arguments) {
+        String url = URL + "/" + endpoint;
 
-                // Aquí puedes utilizar el objeto MyResponse
-            } else {
-                // Maneja el caso de una respuesta no exitosa
-            }
-        }catch (Exception exception){
-            exception.printStackTrace();
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create("", mediaType);
+
+        if (arguments.length > 0) {
+            body = RequestBody.create(new Gson().toJson(arguments[0]), mediaType);
         }
-    }
 
-    // Enum for HTTP method
-    public enum HttpMethod {
-        GET, POST, PUT, DELETE
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(url)
+                .method(httpMethod.name(), body)
+                .addHeader("Content-Type", "application/json");
+
+        if (authMethod != null && credentials != null) {
+            String authorizationHeader = authMethod + " " + credentials;
+            requestBuilder.header("Authorization", authorizationHeader);
+        }
+
+        Request request = requestBuilder.build();
+
+        CompletableFuture<ApiResponse> completableFuture = new CompletableFuture<>();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                ApiResponse apiResponse = new ApiResponse();
+                apiResponse.setError(true);
+                apiResponse.setMessage(e.getMessage());
+                completableFuture.complete(apiResponse);
+            }
+
+            @Override
+            public void onResponse(Call call, Response httpResponse) throws IOException {
+                ApiResponse apiResponse;
+                if (httpResponse.isSuccessful()) {
+                    String jsonString = httpResponse.body().string();
+                    apiResponse = new Gson().fromJson(jsonString, ApiResponse.class);
+                } else {
+                    apiResponse = new ApiResponse();
+                    apiResponse.setError(true);
+                }
+                completableFuture.complete(apiResponse);
+            }
+        });
+
+        return completableFuture;
     }
 }

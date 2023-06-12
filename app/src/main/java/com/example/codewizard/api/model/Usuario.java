@@ -9,8 +9,16 @@ public class Usuario {
     private String email;
     private String password;
     private int tipoUsuario;
+    private  int otp;
+    private int eliminado;
 
     // Constructor
+
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public Usuario(int idUsuario, String username, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String password, int tipoUsuario) {
         this.idUsuario = idUsuario;
         this.username = username;
@@ -85,6 +93,22 @@ public class Usuario {
 
     public void setTipoUsuario(int tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public int getOtp() {
+        return otp;
+    }
+
+    public void setOtp(int otp) {
+        this.otp = otp;
+    }
+
+    public int getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(int eliminado) {
+        this.eliminado = eliminado;
     }
 }
 
