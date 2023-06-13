@@ -8,8 +8,11 @@ import android.widget.TextView;
 
 import com.example.codewizard.R;
 import com.example.codewizard.api.ApiClient;
+import com.example.codewizard.api.ApiResponse;
 import com.example.codewizard.api.HttpMethod;
 import com.example.codewizard.api.model.Usuario;
+import com.example.codewizard.api.services.AuthService;
+import com.example.codewizard.singleton.CurrentUser;
 
 import java.io.IOException;
 
@@ -23,28 +26,11 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         textViewResultado = findViewById(R.id.textView_powerful);
+        ApiResponse apiResponse = AuthService.login(new Usuario("Panther","123456"));
 
-        ApiClient.sendRequest("auth/login", HttpMethod.POST, "Basic", "cGFudGhlcjoxMjM0NTY=", new Usuario("Panther","123456"))
-                .thenAccept(apiResponse -> {
-                    if (apiResponse != null && !apiResponse.isError()) {
-                        // Procesar la respuesta exitosa de la API
-                        // Puedes acceder a los datos de la respuesta a través de los métodos de la clase ApiResponse
-                        // Ejemplo: String mensaje = apiResponse.getMessage();
-                        textViewResultado.setText(apiResponse.getToken());
-                    } else {
-                        textViewResultado.setText(apiResponse.getMessage());
-                        // Procesar el error de la API
-                        // Puedes acceder al mensaje de error a través de apiResponse.getMessage()
-                    }
-                })
-                .exceptionally(e -> {
-                    // Procesar la excepción ocurrida durante la llamada a la API
-                    // Ejemplo: e.printStackTrace();
-                    e.printStackTrace();
-                    textViewResultado.setText(e.getMessage());
-                    return null;
-                });
+        CurrentUser.getInstance().setToken(apiResponse.getToken());
 
+        textViewResultado.setText(" CurrentUser: " + CurrentUser.getInstance().getToken());
     }
 
 }

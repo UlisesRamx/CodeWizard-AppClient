@@ -1,6 +1,9 @@
-package com.example.codewizard.api.model;
+package com.example.codewizard.singleton;
 
-public class Usuario {
+public class CurrentUser {
+    private static CurrentUser instance;
+
+    private String token;
     private int idUsuario;
     private String username;
     private String nombre;
@@ -9,38 +12,25 @@ public class Usuario {
     private String email;
     private String password;
     private int tipoUsuario;
-    private  int otp;
+    private int otp;
     private int eliminado;
 
-    public Usuario() {
-        this.idUsuario = 0;
-        this.username = "";
-        this.nombre = "";
-        this.apellidoPaterno = "";
-        this.apellidoMaterno = "";
-        this.email = "";
-        this.password = "";
-        this.tipoUsuario = 0;
-        this.otp = 0;
-        this.eliminado = 0;
+    private CurrentUser() {
     }
 
-    public Usuario(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public static CurrentUser getInstance() {
+        if (instance == null) {
+            instance = new CurrentUser();
+        }
+        return instance;
     }
 
-    public Usuario(int idUsuario, String username, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String password, int tipoUsuario, int otp, int eliminado) {
-        this.idUsuario = idUsuario;
-        this.username = username;
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.email = email;
-        this.password = password;
-        this.tipoUsuario = tipoUsuario;
-        this.otp = otp;
-        this.eliminado = eliminado;
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public int getIdUsuario() {

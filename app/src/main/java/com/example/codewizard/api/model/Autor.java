@@ -7,6 +7,10 @@ public class Autor {
     private String apellidoMaterno;
 
     public Autor() {
+        this.idAutor = 0;
+        this.nombre = "";
+        this.apellidoPaterno = "";
+        this.apellidoMaterno = "";
     }
 
     public Autor(int idAutor, String nombre, String apellidoPaterno, String apellidoMaterno) {

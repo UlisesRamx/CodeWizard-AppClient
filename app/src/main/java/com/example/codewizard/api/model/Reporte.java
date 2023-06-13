@@ -9,6 +9,10 @@ public class Reporte {
     private Date fechaReporte;
 
     public Reporte() {
+        this.idReporte = 0;
+        this.resenia = new Resenia();
+        this.usuario = new Usuario();
+        this.fechaReporte = new Date();
     }
 
     public Reporte(int idReporte, Resenia resenia, Usuario usuario, Date fechaReporte) {

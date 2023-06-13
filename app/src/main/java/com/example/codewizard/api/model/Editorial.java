@@ -5,6 +5,8 @@ public class Editorial {
     private String nombre;
 
     public Editorial() {
+        this.idEditorial = 0;
+        this.nombre = "";
     }
 
     public Editorial(int idEditorial, String nombre) {

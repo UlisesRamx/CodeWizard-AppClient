@@ -3,6 +3,7 @@ package com.example.codewizard.api;
 import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.model.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApiResponse {
@@ -19,6 +20,31 @@ public class ApiResponse {
     private  Libro libro;
 
     public ApiResponse() {
+        this.error = true;
+        this.message = "";
+        this.token = "";
+        this.user = new Usuario();
+        this.otp = 0;
+        this.correo = "";
+        this.usuario = new Usuario();
+        this.usuarios = new ArrayList<>();
+        this.affectedRows = 0;
+        this.libros = new ArrayList<>();
+        this.libro = new Libro();
+    }
+
+    public ApiResponse(boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro) {
+        this.error = error;
+        this.message = message;
+        this.token = token;
+        this.user = user;
+        this.otp = otp;
+        this.correo = correo;
+        this.usuario = usuario;
+        this.usuarios = usuarios;
+        this.affectedRows = affectedRows;
+        this.libros = libros;
+        this.libro = libro;
     }
 
     public boolean isError() {

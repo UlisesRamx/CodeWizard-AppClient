@@ -1,5 +1,6 @@
 package com.example.codewizard.api.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,16 @@ public class Libro {
     private  List<Resenia> resenias;
 
     public Libro() {
+        this.idLibro = 0;
+        this.editorial = new Editorial();
+        this.isbn = "";
+        this.fechaPublicacion = new Date();
+        this.titulo = "";
+        this.edicion = "";
+        this.numeroDePaginas = 0;
+        this.idioma = "";
+        this.autores = new ArrayList<>();
+        this.resenias = new ArrayList<>();
     }
 
     public Libro(int idLibro, Editorial editorial, String isbn, Date fechaPublicacion, String titulo, String edicion, int numeroDePaginas, String idioma, List<Autor> autores, List<Resenia> resenias) {

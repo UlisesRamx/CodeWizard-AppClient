@@ -28,9 +28,20 @@ import okhttp3.Response;
 
 public class ApiClient {
     private static final String URL = "https://codewizards-api.panther14.repl.co";
+    private static final String ORIGIN_HEADER = "CodeWizards";
 
-    public static CompletableFuture<ApiResponse> sendRequest(String endpoint, HttpMethod httpMethod, String authMethod,
-                                                             String credentials, Object... arguments) {
+    private ApiClient(){}
+
+    /**
+     *
+     * @param endpoint
+     * @param httpMethod
+     * @param authMethod
+     * @param credentials
+     * @param arguments
+     * @return CompletableFuture<ApiResponse>
+     */
+    public static CompletableFuture<ApiResponse> sendRequest(String endpoint, HttpMethod httpMethod, String authMethod, String credentials, Object... arguments) {
         String url = URL + "/" + endpoint;
 
         OkHttpClient client = new OkHttpClient();
@@ -44,7 +55,8 @@ public class ApiClient {
         Request.Builder requestBuilder = new Request.Builder()
                 .url(url)
                 .method(httpMethod.name(), body)
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Origin", ORIGIN_HEADER);
 
         if (authMethod != null && credentials != null) {
             String authorizationHeader = authMethod + " " + credentials;
