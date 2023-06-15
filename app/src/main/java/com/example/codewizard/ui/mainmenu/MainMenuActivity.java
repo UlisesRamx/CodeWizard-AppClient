@@ -6,14 +6,31 @@ import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.codewizard.R;
 import com.example.codewizard.api.ApiResponse;
+import com.example.codewizard.api.model.Usuario;
+import com.example.codewizard.api.services.AuthService;
 import com.example.codewizard.api.services.BookService;
 import com.example.codewizard.api.services.UserService;
 import com.example.codewizard.databinding.ActivityMainMenuBinding;
+import com.example.codewizard.singleton.CurrentUser;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -26,17 +43,27 @@ public class MainMenuActivity extends AppCompatActivity {
         activityMainMenuBinding = ActivityMainMenuBinding.inflate(getLayoutInflater());
         setContentView(activityMainMenuBinding.getRoot());
 
+        ApiResponse apiResponse = AuthService.login(new Usuario("Panther","123456"));
+
+        CurrentUser.getInstance().setToken(apiResponse.getToken());
+
         loadView();
+
     }
 
     private void loadView(){
-        RecyclerView recyclerView = activityMainMenuBinding.rvBooksUsers;
+        //RecyclerView recyclerView = activityMainMenuBinding.rvBooksUsers;
         Switch switchBookUser = activityMainMenuBinding.toggleBookUsers;
 
         bookUserAdapter = new BookUserAdapter(this);
-        ApiResponse apiResponse = BookService.allBooks();
-        bookUserAdapter.setItems(apiResponse.getLibros());
+        RecyclerView recyclerView = findViewById(R.id.rvBooksUsers);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(bookUserAdapter);
+        //ApiResponse apiResponse = BookService.allBooks();
+        //bookUserAdapter.setItems(apiResponse.getLibros());
+
+
+
 
         activityMainMenuBinding.toggleBookUsers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
@@ -74,12 +101,22 @@ public class MainMenuActivity extends AppCompatActivity {
         Switch switchBookUser = activityMainMenuBinding.toggleBookUsers;
         if (switchBookUser.isChecked()) {//Usuarios
             ApiResponse apiResponse = UserService.findUser(query);
-            bookUserAdapter.setItems(apiResponse.getUsuarios());
+            if (apiResponse.getUsuarios().size() > 0){
+                bookUserAdapter.setItems(apiResponse.getUsuarios());
+                //Toast.makeText(getApplicationContext(), "Jala: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+            }else{
+                Toast.makeText(getApplicationContext(), "Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+            }
+
         } else {//Libros
             ApiResponse apiResponse = BookService.findbook(query);
-            bookUserAdapter.setItems(apiResponse.getLibros());
+            if (apiResponse.getLibros().size() > 0){
+                bookUserAdapter.setItems(apiResponse.getLibros());
+                //Toast.makeText(getApplicationContext(), "Jala: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+            }else{
+                Toast.makeText(getApplicationContext(), "Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+            }
         }
-        recyclerView.setAdapter(bookUserAdapter);
 
     }
 
