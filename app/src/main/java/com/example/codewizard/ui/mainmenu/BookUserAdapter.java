@@ -15,6 +15,7 @@ import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.model.Usuario;
 
 import java.net.CookieManager;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookUserAdapter extends RecyclerView.Adapter<BookUserAdapter.ViewHolder> {
@@ -23,19 +24,17 @@ public class BookUserAdapter extends RecyclerView.Adapter<BookUserAdapter.ViewHo
     private List<Usuario> userFilteredList;
     private List<Libro> bookItemList;
     private List<Libro> bookFilteredList;
-    private  List<?> filteredList;
+    private List<?> filteredList;
     private List<?> itemList;
-
-    public BookUserAdapter() {
-    }
 
     public BookUserAdapter(Context context) {
         this.context = context;
-    }
-
-    public BookUserAdapter(Context context, List<?> itemList) {
-        this.context = context;
-        this.itemList = itemList;
+        this.userItemList = new ArrayList<>();
+        this.userFilteredList = new ArrayList<>();
+        this.bookItemList = new ArrayList<>();
+        this.bookFilteredList = new ArrayList<>();
+        this.filteredList = new ArrayList<>();
+        this.itemList = new ArrayList<>();
     }
 
     public void filterUser(String query) {
@@ -73,12 +72,16 @@ public class BookUserAdapter extends RecyclerView.Adapter<BookUserAdapter.ViewHo
     }
 
     public void setItems(List<?> items) {
-        if(items.get(0) instanceof Usuario){
+        if (items.get(0) instanceof Usuario) {
             userItemList = (List<Usuario>) items;
-        }else{
-            if (items.get(0) instanceof Libro){
-                bookItemList = (List<Libro>) items;
-            }
+            userFilteredList.clear();
+            userFilteredList.addAll(userItemList);
+            filteredList = userFilteredList;
+        } else if (items.get(0) instanceof Libro) {
+            bookItemList = (List<Libro>) items;
+            bookFilteredList.clear();
+            bookFilteredList.addAll(bookItemList);
+            filteredList = bookFilteredList;
         }
         itemList = items;
         notifyDataSetChanged();
