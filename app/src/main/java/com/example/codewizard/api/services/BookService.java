@@ -24,6 +24,8 @@ public class BookService {
                 AUTH_METHOD,
                 CREDENTIALS
         );
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
         ApiResponse apiResponse = new ApiResponse();
 
         try {

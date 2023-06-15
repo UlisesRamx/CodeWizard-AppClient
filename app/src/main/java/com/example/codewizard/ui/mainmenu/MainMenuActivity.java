@@ -35,6 +35,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         bookUserAdapter = new BookUserAdapter(this);
         ApiResponse apiResponse = BookService.allBooks();
+        System.out.println("HEY: "+apiResponse.getLibros());
         bookUserAdapter.setItems(apiResponse.getLibros());
         recyclerView.setAdapter(bookUserAdapter);
 
