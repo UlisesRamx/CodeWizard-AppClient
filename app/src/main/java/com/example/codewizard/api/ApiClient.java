@@ -79,6 +79,7 @@ public class ApiClient {
             @Override
             public void onResponse(Call call, Response httpResponse) throws IOException {
                 ApiResponse apiResponse;
+                int statusCode = httpResponse.code();
                 if (httpResponse.isSuccessful()) {
                     String jsonString = httpResponse.body().string();
                     apiResponse = new Gson().fromJson(jsonString, ApiResponse.class);
@@ -86,6 +87,7 @@ public class ApiClient {
                     apiResponse = new ApiResponse();
                     apiResponse.setError(true);
                 }
+                apiResponse.setCode(statusCode);
                 completableFuture.complete(apiResponse);
             }
         });

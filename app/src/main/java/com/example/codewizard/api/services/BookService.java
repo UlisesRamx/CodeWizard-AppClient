@@ -15,6 +15,29 @@ public class BookService {
 
     /**
      *
+     * @return ApiResponse object
+     */
+    public static ApiResponse allBooks(){
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                "api/books",
+                HttpMethod.POST,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+    /**
+     *
      * @param libro
      * @return ApiResponse object
      */
