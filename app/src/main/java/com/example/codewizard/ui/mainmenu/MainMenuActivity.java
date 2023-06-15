@@ -45,7 +45,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
         ApiResponse apiResponse = AuthService.login(new Usuario("Panther","123456"));
 
-        CurrentUser.getInstance().setToken(apiResponse.getToken());
+      //  CurrentUser.getInstance().setToken(apiResponse.getToken());
+        CurrentUser.getInstance().getApellidoMaterno();
 
         loadView();
 
