@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".ui.loginApp.LoginActivity">
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Usuario"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:layout_below="@+id/editTextUsername"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Sesión"
+        android:layout_below="@+id/editTextPassword" />
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrarme"
+        android:layout_below="@+id/buttonLogin" />
+    <TextView
+        android:id="@+id/textViewOlvideContrasena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Olvidé mi contraseña"
+        android:layout_below="@+id/buttonRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+
+
+</RelativeLayout>

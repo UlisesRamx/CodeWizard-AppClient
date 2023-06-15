@@ -1,7 +1,5 @@
 package com.example.codewizard.api.model;
 
-import java.util.List;
-
 public class Resenia {
     private int idResenia;
     private Usuario usuario;

@@ -26,11 +26,12 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         textViewResultado = findViewById(R.id.textView_powerful);
-        ApiResponse apiResponse = AuthService.login(new Usuario("Panther","123456"));
+       //ApiResponse apiResponse = AuthService.login(new Usuario("Panther","123456"));
 
-        CurrentUser.getInstance().setToken(apiResponse.getToken());
+      //  CurrentUser.getInstance().setToken(apiResponse.getToken());
+        CurrentUser.getInstance().getApellidoMaterno();
 
-        textViewResultado.setText(" CurrentUser: " + CurrentUser.getInstance().getToken());
+        textViewResultado.setText(CurrentUser.getInstance().getEmail());
     }
 
 }
