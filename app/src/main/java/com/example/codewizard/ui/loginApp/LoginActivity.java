@@ -10,10 +10,8 @@ import android.widget.Toast;
 import android.content.Intent;
 
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.codewizard.api.ApiResponse;
 import com.example.codewizard.singleton.CurrentUser;
@@ -23,7 +21,7 @@ import com.example.codewizard.api.services.AuthService;
 import com.example.codewizard.R;
 import com.example.codewizard.api.model.Usuario;
 import com.example.codewizard.ui.mainmenu.MainMenuActivity;
-import com.example.codewizard.ui.signup.SignUpActivity;
+import com.example.codewizard.ui.resenias.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText editTextUsername;

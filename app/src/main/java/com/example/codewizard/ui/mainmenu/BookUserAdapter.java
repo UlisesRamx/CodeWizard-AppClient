@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.codewizard.R;
 import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.model.Usuario;
+import com.example.codewizard.ui.bookDetails.BookDetails;
 import com.example.codewizard.ui.perfil.ProfileActivity;
 import com.example.codewizard.ui.resenias.ReseniaAdapter;
 import com.google.gson.Gson;
@@ -137,7 +138,7 @@ public class BookUserAdapter extends RecyclerView.Adapter<BookUserAdapter.ViewHo
                     Libro libro = (Libro) item;
                     Gson gson = new Gson();
                     String libroJson = gson.toJson(libro);
-                    Intent intent = new Intent(context, ReseniaAdapter.class);//Aqui pones tu activity de detalles de libro
+                    Intent intent = new Intent(context, BookDetails.class);//Aqui pones tu activity de detalles de libro
                     intent.putExtra("libro", libroJson);
                     context.startActivity(intent);
                 }
