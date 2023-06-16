@@ -2,7 +2,9 @@ package com.example.codewizard.ui.mainmenu;
 
 import static android.widget.CompoundButton.*;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Switch;
@@ -17,9 +19,14 @@ import com.example.codewizard.api.ApiResponse;
 import com.example.codewizard.api.model.Usuario;
 import com.example.codewizard.api.services.AuthService;
 import com.example.codewizard.api.services.BookService;
+import com.example.codewizard.api.services.ReviewService;
 import com.example.codewizard.api.services.UserService;
 import com.example.codewizard.databinding.ActivityMainMenuBinding;
 import com.example.codewizard.singleton.CurrentUser;
+import com.example.codewizard.ui.broadcast.BroadcastActivity;
+import com.example.codewizard.ui.perfil.ProfileActivity;
+import com.example.codewizard.ui.resenias.ReseniaActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -50,6 +57,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void loadView(){
         //RecyclerView recyclerView = activityMainMenuBinding.rvBooksUsers;
         Switch switchBookUser = activityMainMenuBinding.toggleBookUsers;
+        //FloatingActionButton floatingActionButton = activityMainMenuBinding.fabReviews;
 
         bookUserAdapter = new BookUserAdapter(this);
         RecyclerView recyclerView = findViewById(R.id.rvBooksUsers);
@@ -57,6 +65,32 @@ public class MainMenuActivity extends AppCompatActivity {
         recyclerView.setAdapter(bookUserAdapter);
         //ApiResponse apiResponse = BookService.allBooks();
         //bookUserAdapter.setItems(apiResponse.getLibros());
+
+        if(CurrentUser.getInstance().getTipoUsuario() == 1){
+            activityMainMenuBinding.fabReviews.setVisibility(INVISIBLE);
+            activityMainMenuBinding.fabEmail.setVisibility(INVISIBLE);
+        } else if (CurrentUser.getInstance().getTipoUsuario() == 2) {
+            activityMainMenuBinding.fabReviews.setVisibility(VISIBLE);
+            activityMainMenuBinding.fabEmail.setVisibility(VISIBLE);
+        }
+
+        activityMainMenuBinding.fabReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, ReseniaActivity.class);//Para enviar broadcast
+                intent.putExtra("idLibro", 0);
+                startActivity(intent);
+            }
+        });
+
+        activityMainMenuBinding.fabEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, BroadcastActivity.class);//Para enviar a reseñas
+                startActivity(intent);
+            }
+        });
+
 
         activityMainMenuBinding.toggleBookUsers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override

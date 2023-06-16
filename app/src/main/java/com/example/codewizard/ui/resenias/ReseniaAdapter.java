@@ -81,15 +81,22 @@ public class ReseniaAdapter extends RecyclerView.Adapter<ReseniaAdapter.ViewHold
         // Vincular los datos del elemento con los views del ViewHolder
         holder.textViewName.setText(item.getDescripcion());
         holder.textViewDescription.setText(item.getUsuario().getUsername());
-        if(item.getIdUsuario() == CurrentUser.getInstance().getIdUsuario()){
+
+        if(CurrentUser.getInstance().getTipoUsuario() == 1){
+            if(item.getIdUsuario() == CurrentUser.getInstance().getIdUsuario()){
+                holder.buttonReprotDelete.setText("Delete");
+            }else{
+                holder.buttonReprotDelete.setText("Report");
+            }
+        } else if (CurrentUser.getInstance().getTipoUsuario() == 2) {
             holder.buttonReprotDelete.setText("Delete");
-        }else{
-            holder.buttonReprotDelete.setText("Report");
         }
+
         holder.buttonReprotDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Resenia review = itemList.get(holder.getAdapterPosition());
+
                 if(holder.buttonReprotDelete.getText().equals("Delete")){
                     ApiResponse apiResponse = ReviewService.deleteReview(review.getIdResenia());
                     if(apiResponse.getAffectedRows() > 0){

@@ -56,9 +56,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         activityProfileBinding.btnFinished.setOnClickListener(v -> {
             //Intent intent = new Intent(ProfileActivity.this, ReseniaActivity.class);//Para probar reportar y eliminar reseñas
-            Intent intent = new Intent(ProfileActivity.this, BroadcastActivity.class);//Para probar reportar y eliminar reseñas
-            /*Intent intent = new Intent(ProfileActivity.this, MainMenuActivity.class);
-            intent.putExtra("status", "Finished");*/
+            //Intent intent = new Intent(ProfileActivity.this, BroadcastActivity.class);//Para enviar broadcast
+            Intent intent = new Intent(ProfileActivity.this, MainMenuActivity.class);
+            intent.putExtra("status", "Finished");
             startActivity(intent);
         });
         activityProfileBinding.btnReading.setOnClickListener(v -> {
