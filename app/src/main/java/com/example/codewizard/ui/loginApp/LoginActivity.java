@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         CurrentUser.getInstance().setApellidoPaterno(apiResponse.getUser().getApellidoPaterno());
                         CurrentUser.getInstance().setUsername(apiResponse.getUser().getUsername());
                         CurrentUser.getInstance().setEliminado(apiResponse.getUser().getEliminado());
+                        CurrentUser.getInstance().setTipoUsuario(apiResponse.getUser().getTipoUsuario());
 
                         Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
                         startActivity(intent);
