@@ -173,6 +173,15 @@ public class PasswordChangeActivity extends AppCompatActivity{
                 String token = apiResponse.getToken();
                 Toast.makeText(this, "Actualización exitosa", Toast.LENGTH_SHORT).show();
 
+                CurrentUser.getInstance().setToken(token);
+                CurrentUser.getInstance().setIdUsuario(apiResponse.getUser().getIdUsuario());
+                CurrentUser.getInstance().setEmail(editTextCorreo.getText().toString());
+                CurrentUser.getInstance().setNombre(editTextNombre.getText().toString());
+                CurrentUser.getInstance().setApellidoMaterno(editTextApellidoMaterno.getText().toString());
+                CurrentUser.getInstance().setApellidoPaterno(editTextApellidoPaterno.getText().toString());
+                CurrentUser.getInstance().setUsername(editTextNombreUsuario.getText().toString());
+
+
                 Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
                 startActivity(intent);
 

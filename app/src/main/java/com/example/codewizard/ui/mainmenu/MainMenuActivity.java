@@ -24,6 +24,7 @@ import com.example.codewizard.api.services.UserService;
 import com.example.codewizard.databinding.ActivityMainMenuBinding;
 import com.example.codewizard.singleton.CurrentUser;
 import com.example.codewizard.ui.broadcast.BroadcastActivity;
+import com.example.codewizard.ui.passwordchange.PasswordChangeActivity;
 import com.example.codewizard.ui.perfil.ProfileActivity;
 import com.example.codewizard.ui.resenias.ReseniaActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -73,7 +74,14 @@ public class MainMenuActivity extends AppCompatActivity {
             activityMainMenuBinding.fabReviews.setVisibility(VISIBLE);
             activityMainMenuBinding.fabEmail.setVisibility(VISIBLE);
         }
+        activityMainMenuBinding.updateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, PasswordChangeActivity.class);//Para enviar broadcast
 
+                startActivity(intent);
+            }
+        });
         activityMainMenuBinding.fabReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +90,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         activityMainMenuBinding.fabEmail.setOnClickListener(new View.OnClickListener() {
             @Override

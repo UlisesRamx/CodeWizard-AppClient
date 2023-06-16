@@ -82,10 +82,15 @@ public class UpdatePasswordActivity extends AppCompatActivity {
 
         if (!apiResponse.isError()) {
             String token = apiResponse.getToken();
-            Toast.makeText(this, "Actualización exitosa", Toast.LENGTH_SHORT).show();
+            if(apiResponse.getCode()==200 && apiResponse.getAffectedRows()>0){
+                Toast.makeText(this, "Actualización exitosa", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "Tu contraseña actual es incorrecta", Toast.LENGTH_SHORT).show();
+            }
+
 
         } else {
             String errorMessage = apiResponse.getMessage();

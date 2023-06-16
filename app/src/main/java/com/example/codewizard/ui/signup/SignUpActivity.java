@@ -164,11 +164,16 @@ public class SignUpActivity extends AppCompatActivity {
             ApiResponse apiResponse = AuthService.signUp(usuario);
 
             if (!apiResponse.isError()) {
-                String token = apiResponse.getToken();
-                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                startActivity(intent);
+
+                if(apiResponse.getCode()==200 && apiResponse.getAffectedRows()>0){
+                    String token = apiResponse.getToken();
+                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                    cleanCamposTexto();
+
+                }else{
+                    Toast.makeText(this, "El correo o el usuario ya existen", Toast.LENGTH_SHORT).show();
+                }
 
             } else {
                 String errorMessage = apiResponse.getMessage();
@@ -219,6 +224,16 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void cleanCamposTexto() {
+        editTextNombre.setText("");
+        editTextApellidoPaterno.setText("");
+        editTextApellidoMaterno.setText("");
+        editTextCorreo.setText("");
+        editTextNombreUsuario.setText("");
+        editTextContrasena.setText("");
+        editTextConfirmarContrasena.setText("");
     }
 
     private boolean isValidForm() {
