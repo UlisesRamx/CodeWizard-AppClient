@@ -11,6 +11,7 @@ public class Resenia {
     private int idUsuario;
     private int idReporte;
     private Date fechaReporte;
+    private int idLibro;
 
     public Resenia() {
         this.idResenia = 0;
@@ -96,5 +97,13 @@ public class Resenia {
 
     public void setFechaReporte(Date fechaReporte) {
         this.fechaReporte = fechaReporte;
+    }
+
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
+    }
+
+    public int getIdLibro() {
+        return idLibro;
     }
 }

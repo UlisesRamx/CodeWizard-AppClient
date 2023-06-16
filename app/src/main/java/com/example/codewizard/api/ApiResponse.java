@@ -63,6 +63,14 @@ public class ApiResponse {
         this.code = code;
     }
 
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public boolean isError() {
         return error;
     }

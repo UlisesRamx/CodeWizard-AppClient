@@ -23,6 +23,7 @@ import com.example.codewizard.api.services.AuthService;
 import com.example.codewizard.R;
 import com.example.codewizard.api.model.Usuario;
 import com.example.codewizard.ui.mainmenu.MainMenuActivity;
+import com.example.codewizard.ui.makereview.MakeReviewActivity;
 import com.example.codewizard.ui.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
