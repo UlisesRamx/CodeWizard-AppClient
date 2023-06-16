@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvReviewerName"
+            android:layout_width="261dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="Book or User" />
+
+        <TextView
+            android:id="@+id/tvResenia"
+            android:layout_width="262dp"
+            android:layout_height="91dp"
+            android:layout_below="@+id/tvReviewerName"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="Book or User" />
+
+        <Button
+            android:id="@+id/btnReportDelete"
+            android:layout_width="124dp"
+            android:layout_height="58dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/tvResenia"
+            android:text="Report" />
+
+    </RelativeLayout>
+</layout>
