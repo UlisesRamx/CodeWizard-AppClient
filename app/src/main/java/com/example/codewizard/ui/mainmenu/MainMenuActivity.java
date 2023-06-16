@@ -43,11 +43,6 @@ public class MainMenuActivity extends AppCompatActivity {
         activityMainMenuBinding = ActivityMainMenuBinding.inflate(getLayoutInflater());
         setContentView(activityMainMenuBinding.getRoot());
 
-        ApiResponse apiResponse = AuthService.login(new Usuario("Panther","123456"));
-
-      //  CurrentUser.getInstance().setToken(apiResponse.getToken());
-        CurrentUser.getInstance().getApellidoMaterno();
-
         loadView();
 
     }
@@ -62,9 +57,6 @@ public class MainMenuActivity extends AppCompatActivity {
         recyclerView.setAdapter(bookUserAdapter);
         //ApiResponse apiResponse = BookService.allBooks();
         //bookUserAdapter.setItems(apiResponse.getLibros());
-
-
-
 
         activityMainMenuBinding.toggleBookUsers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
@@ -91,10 +83,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 return true;
             }
         });
-        /*Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
-        intent.putExtra("status", "Finished");
-        startActivity(intent);
-        */
+
     }
 
     private void searchItem(String query) {
