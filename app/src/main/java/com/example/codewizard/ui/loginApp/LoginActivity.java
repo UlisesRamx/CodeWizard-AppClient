@@ -13,6 +13,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
@@ -86,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                         CurrentUser.getInstance().setPassword(apiResponse.getUser().getPassword());
                         CurrentUser.getInstance().setTipoUsuario(apiResponse.getUser().getTipoUsuario());
 
-                        Intent intent = new Intent(getApplicationContext(), PasswordChangeActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
                         startActivity(intent);
 
                     } else {
