@@ -44,18 +44,20 @@ public class ApiClient {
     public static CompletableFuture<ApiResponse> sendRequest(String endpoint, HttpMethod httpMethod, String authMethod, String credentials, Object... arguments) {
         String url = URL + "/" + endpoint;
 
+        System.out.println(url);
+
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create("", mediaType);
+        RequestBody body = null;
 
-        if (arguments.length > 0) {
+        if (arguments.length > 0 && httpMethod != HttpMethod.GET) {
             body = RequestBody.create(new Gson().toJson(arguments[0]), mediaType);
         }
 
         Request.Builder requestBuilder = new Request.Builder()
                 .url(url)
                 .method(httpMethod.name(), body)
-                .addHeader("Content-Type", "application/json")
+                //.addHeader("Content-Type", "application/json")
                 .addHeader("Origin", ORIGIN_HEADER);
 
         if (authMethod != null && credentials != null) {
@@ -79,6 +81,7 @@ public class ApiClient {
             @Override
             public void onResponse(Call call, Response httpResponse) throws IOException {
                 ApiResponse apiResponse;
+                int statusCode = httpResponse.code();
                 if (httpResponse.isSuccessful()) {
                     String jsonString = httpResponse.body().string();
                     apiResponse = new Gson().fromJson(jsonString, ApiResponse.class);
@@ -86,6 +89,7 @@ public class ApiClient {
                     apiResponse = new ApiResponse();
                     apiResponse.setError(true);
                 }
+                apiResponse.setCode(statusCode);
                 completableFuture.complete(apiResponse);
             }
         });

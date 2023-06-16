@@ -23,6 +23,15 @@
             android:name=".ui.updatepassword.UpdatePasswordActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.broadcast.BroadcastActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.resenias.ReseniaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.perfil.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.signup.SignUpActivity"
             android:exported="false" />
         <activity

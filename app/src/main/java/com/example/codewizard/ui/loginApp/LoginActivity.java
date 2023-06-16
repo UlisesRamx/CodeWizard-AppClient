@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                         CurrentUser.getInstance().setUsername(apiResponse.getUser().getUsername());
                         CurrentUser.getInstance().setEliminado(apiResponse.getUser().getEliminado());
                         CurrentUser.getInstance().setPassword(apiResponse.getUser().getPassword());
+                        CurrentUser.getInstance().setTipoUsuario(apiResponse.getUser().getTipoUsuario());
 
                         Intent intent = new Intent(getApplicationContext(), PasswordChangeActivity.class);
                         startActivity(intent);

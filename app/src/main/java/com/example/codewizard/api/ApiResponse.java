@@ -1,12 +1,15 @@
 package com.example.codewizard.api;
 
 import com.example.codewizard.api.model.Libro;
+import com.example.codewizard.api.model.Resenia;
 import com.example.codewizard.api.model.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApiResponse {
+
+    private int code;
     private boolean error;
     private String message;
     private  String token;
@@ -18,8 +21,10 @@ public class ApiResponse {
     private  int affectedRows;//Para cualquier insert, delete, update
     private List<Libro> libros;
     private  Libro libro;
+    private List<Resenia> resenias;
 
     public ApiResponse() {
+        this.code = 0;
         this.error = true;
         this.message = "";
         this.token = "";
@@ -31,9 +36,11 @@ public class ApiResponse {
         this.affectedRows = 0;
         this.libros = new ArrayList<>();
         this.libro = new Libro();
+        this.resenias = new ArrayList<>();
     }
 
-    public ApiResponse(boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro) {
+    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias) {
+        this.code = code;
         this.error = error;
         this.message = message;
         this.token = token;
@@ -45,6 +52,15 @@ public class ApiResponse {
         this.affectedRows = affectedRows;
         this.libros = libros;
         this.libro = libro;
+        this.resenias = resenias;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public boolean isError() {
@@ -133,5 +149,13 @@ public class ApiResponse {
 
     public void setLibro(Libro libro) {
         this.libro = libro;
+    }
+
+    public List<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(List<Resenia> resenias) {
+        this.resenias = resenias;
     }
 }
