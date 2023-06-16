@@ -1,4 +1,4 @@
-package com.example.codewizard.ui.signup;
+package com.example.codewizard.ui.resenias.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 

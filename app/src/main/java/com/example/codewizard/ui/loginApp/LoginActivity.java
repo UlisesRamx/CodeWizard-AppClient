@@ -17,10 +17,8 @@ import android.widget.Toast;
 import android.content.Intent;
 
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.codewizard.api.ApiResponse;
 import com.example.codewizard.singleton.CurrentUser;
@@ -33,7 +31,7 @@ import com.example.codewizard.ui.mainmenu.MainMenuActivity;
 import com.example.codewizard.ui.passwordchange.PasswordChangeActivity;
 
 import com.example.codewizard.ui.recoverpassword.RecoverPasswordActivity;
-import com.example.codewizard.ui.signup.SignUpActivity;
+import com.example.codewizard.ui.resenias.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText editTextUsername;
@@ -72,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 if(!password.isEmpty() && !email.isEmpty()){
                     Usuario usuario = new Usuario(email, PasswordUtils.generateSHA512Hash(password));
-
+                    System.out.println(usuario.getNombre()+" * "+usuario.getPassword());
                     ApiResponse apiResponse = AuthService.login(usuario);
 
                     if (!apiResponse.isError()) {
