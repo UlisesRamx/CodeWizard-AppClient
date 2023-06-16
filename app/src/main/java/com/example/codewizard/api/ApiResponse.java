@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ApiResponse {
+
+    private int code;
     private boolean error;
     private String message;
     private  String token;
@@ -20,6 +22,7 @@ public class ApiResponse {
     private  Libro libro;
 
     public ApiResponse() {
+        this.code = 0;
         this.error = true;
         this.message = "";
         this.token = "";
@@ -33,7 +36,8 @@ public class ApiResponse {
         this.libro = new Libro();
     }
 
-    public ApiResponse(boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro) {
+    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro) {
+        this.code = code;
         this.error = error;
         this.message = message;
         this.token = token;
@@ -45,6 +49,14 @@ public class ApiResponse {
         this.affectedRows = affectedRows;
         this.libros = libros;
         this.libro = libro;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public boolean isError() {
