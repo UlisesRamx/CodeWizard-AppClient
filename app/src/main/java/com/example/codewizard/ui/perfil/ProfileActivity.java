@@ -15,8 +15,11 @@ import com.example.codewizard.api.services.UserService;
 import com.example.codewizard.databinding.ActivityMainMenuBinding;
 import com.example.codewizard.databinding.ActivityProfileBinding;
 import com.example.codewizard.singleton.CurrentUser;
+import com.example.codewizard.ui.broadcast.BroadcastActivity;
 import com.example.codewizard.ui.login.LoginActivity;
 import com.example.codewizard.ui.mainmenu.MainMenuActivity;
+import com.example.codewizard.ui.resenias.ReseniaActivity;
+import com.google.gson.Gson;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -30,36 +33,42 @@ public class ProfileActivity extends AppCompatActivity {
         activityProfileBinding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(activityProfileBinding.getRoot());
 
-        //Recuperar los datos pasados desde la Activity anterior
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        //Hacer algo con los datos recibidos
-        loadView(username);
+        String usuarioJson = intent.getStringExtra("usuario");
+
+        Gson gson = new Gson();
+        Usuario usuarioRecibido = gson.fromJson(usuarioJson, Usuario.class);
+
+        loadView(usuarioRecibido.getUsername());
     }
 
+    /**
+     * <p>Esto va en el activity de la biblioteca en el onCreate para saber en que pestaña debe empezar</p>
+     * <p>Recuperar los datos pasados desde la Activity anterior</p>
+     * <p>Intent intent = getIntent();</p>
+     * <p>String valor = intent.getStringExtra("status");</p>
+     * <p>Hacer algo con los datos recibidos</p>
+     * @param username
+     */
     private void loadView(String username) {
         ApiResponse apiResponse = UserService.userProfile(username);
         activityProfileBinding.tvUsername.setText(apiResponse.getUsuario().getUsername());
-        /**
-         * //Esto va en el activity de la biblioteca en el onCreate para saber en que pestaña debe empezar
-         * //Recuperar los datos pasados desde la Activity anterior
-         * Intent intent = getIntent();
-         * String valor = intent.getStringExtra("status");
-         * //Hacer algo con los datos recibidos
-         */
+
         activityProfileBinding.btnFinished.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, MainMenuActivity.class);
-            intent.putExtra("status", "Finished");
+            //Intent intent = new Intent(ProfileActivity.this, ReseniaActivity.class);//Para probar reportar y eliminar reseñas
+            Intent intent = new Intent(ProfileActivity.this, BroadcastActivity.class);//Para probar reportar y eliminar reseñas
+            /*Intent intent = new Intent(ProfileActivity.this, MainMenuActivity.class);
+            intent.putExtra("status", "Finished");*/
             startActivity(intent);
         });
         activityProfileBinding.btnReading.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, MainMenuActivity.class);
-            intent.putExtra("status", "Finished");
+            intent.putExtra("status", "Reading");
             startActivity(intent);
         });
         activityProfileBinding.btnPending.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, MainMenuActivity.class);
-            intent.putExtra("status", "Finished");
+            intent.putExtra("status", "Pending");
             startActivity(intent);
         });
     }
