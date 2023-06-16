@@ -43,7 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
         activityMainMenuBinding = ActivityMainMenuBinding.inflate(getLayoutInflater());
         setContentView(activityMainMenuBinding.getRoot());
 
-        ApiResponse apiResponse = AuthService.login(new Usuario("Panther","123456"));
+        ApiResponse apiResponse = AuthService.login(new Usuario("JOJO","123456"));
 
       //  CurrentUser.getInstance().setToken(apiResponse.getToken());
         CurrentUser.getInstance().getApellidoMaterno();
@@ -62,9 +62,6 @@ public class MainMenuActivity extends AppCompatActivity {
         recyclerView.setAdapter(bookUserAdapter);
         //ApiResponse apiResponse = BookService.allBooks();
         //bookUserAdapter.setItems(apiResponse.getLibros());
-
-x   
-
 
         activityMainMenuBinding.toggleBookUsers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
@@ -106,16 +103,16 @@ x
                 bookUserAdapter.setItems(apiResponse.getUsuarios());
                 //Toast.makeText(getApplicationContext(), "Jala: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }else{
-                Toast.makeText(getApplicationContext(), "Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+                Toast.makeText(getApplicationContext(), "Usuario Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }
 
         } else {//Libros
             ApiResponse apiResponse = BookService.findbook(query);
             if (apiResponse.getLibros().size() > 0){
                 bookUserAdapter.setItems(apiResponse.getLibros());
-                //Toast.makeText(getApplicationContext(), "Jala: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+                Toast.makeText(getApplicationContext(), "Jala LIBROS: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }else{
-                Toast.makeText(getApplicationContext(), "Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+                Toast.makeText(getApplicationContext(), "LIBROS Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }
         }
 

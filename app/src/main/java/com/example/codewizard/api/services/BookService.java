@@ -120,6 +120,8 @@ public class BookService {
      */
     public static ApiResponse findbook(String libro){
         String endpoint = "api/books/findbook" + "/" + libro;
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 endpoint,
                 HttpMethod.GET,
