@@ -165,7 +165,7 @@ public class UserService {
         String endpoint = "api/users/finduser" + "/" + username;
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 endpoint,
-                HttpMethod.DELETE,
+                HttpMethod.GET,
                 AUTH_METHOD,
                 CREDENTIALS
         );
@@ -190,7 +190,7 @@ public class UserService {
         String endpoint = "api/users/profile" + "/" + username;
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 endpoint,
-                HttpMethod.DELETE,
+                HttpMethod.GET,
                 AUTH_METHOD,
                 CREDENTIALS
         );
@@ -215,7 +215,7 @@ public class UserService {
         String endpoint = "api/users/library" + "/" + idUser;
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 endpoint,
-                HttpMethod.DELETE,
+                HttpMethod.GET,
                 AUTH_METHOD,
                 CREDENTIALS
         );
@@ -240,7 +240,7 @@ public class UserService {
     public static ApiResponse sendBroadcast(String subject, String content){
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 "api/users/broadcast",
-                HttpMethod.DELETE,
+                HttpMethod.POST,
                 AUTH_METHOD,
                 CREDENTIALS,
                 new BroadcastEmail(subject,content)

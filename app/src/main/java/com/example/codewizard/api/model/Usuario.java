@@ -12,7 +12,7 @@ public class Usuario {
     private  int otp;
     private int eliminado;
 
-    public Usuario() {
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasena, int i, int i1, int i2) {
         this.idUsuario = 0;
         this.username = "";
         this.nombre = "";
@@ -29,9 +29,34 @@ public class Usuario {
         this.username = username;
         this.password = password;
     }
+public Usuario(){
+    this.idUsuario = 0;
+    this.username = "";
+    this.nombre = "";
+    this.apellidoPaterno = "";
+    this.apellidoMaterno = "";
+    this.email = "";
+    this.password = "";
+    this.tipoUsuario = 0;
+    this.otp = 0;
+    this.eliminado = 0;
+}
+
 
     public Usuario(int idUsuario, String username, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String password, int tipoUsuario, int otp, int eliminado) {
         this.idUsuario = idUsuario;
+        this.username = username;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.email = email;
+        this.password = password;
+        this.tipoUsuario = tipoUsuario;
+        this.otp = otp;
+        this.eliminado = eliminado;
+    }
+
+    public Usuario(String username, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String password, int tipoUsuario, int otp, int eliminado) {
         this.username = username;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
