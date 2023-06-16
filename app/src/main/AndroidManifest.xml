@@ -17,6 +17,15 @@
             android:name=".ui.bookDetails.BookDetails"
             android:exported="false" />
         <activity
+            android:name=".ui.recoverpassword.RecoverPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.newpassword.NewPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.updatepassword.UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.broadcast.BroadcastActivity"
             android:exported="false" />
         <activity

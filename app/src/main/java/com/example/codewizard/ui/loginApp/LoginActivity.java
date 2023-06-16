@@ -4,7 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.codewizard.segurity.*;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.widget.Button;
 import android.widget.Toast;
 import android.content.Intent;
@@ -21,6 +28,9 @@ import com.example.codewizard.api.services.AuthService;
 import com.example.codewizard.R;
 import com.example.codewizard.api.model.Usuario;
 import com.example.codewizard.ui.mainmenu.MainMenuActivity;
+import com.example.codewizard.ui.passwordchange.PasswordChangeActivity;
+
+import com.example.codewizard.ui.recoverpassword.RecoverPasswordActivity;
 import com.example.codewizard.ui.resenias.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private Button buttonLogin;
     private Button buttonRegister;
+    private TextView textViewOlvideContrasena;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -39,6 +51,18 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         Button  buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
+        textViewOlvideContrasena = findViewById(R.id.textViewOlvideContrasena);
+
+
+
+        textViewOlvideContrasena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RecoverPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,9 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                         CurrentUser.getInstance().setApellidoPaterno(apiResponse.getUser().getApellidoPaterno());
                         CurrentUser.getInstance().setUsername(apiResponse.getUser().getUsername());
                         CurrentUser.getInstance().setEliminado(apiResponse.getUser().getEliminado());
+                        CurrentUser.getInstance().setPassword(apiResponse.getUser().getPassword());
                         CurrentUser.getInstance().setTipoUsuario(apiResponse.getUser().getTipoUsuario());
 
-                        Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), PasswordChangeActivity.class);
                         startActivity(intent);
 
                     } else {

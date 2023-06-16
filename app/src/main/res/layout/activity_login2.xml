@@ -45,7 +45,10 @@
         android:text="Olvidé mi contraseña"
         android:layout_below="@+id/buttonRegister"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
+       />
 
 
 
