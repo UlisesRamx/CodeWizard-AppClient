@@ -7,6 +7,7 @@ public class Resenia {
     private int valoracion;
     private boolean activa;
     private int idUsuario;
+    private int idLibro;
 
     public Resenia() {
         this.idResenia = 0;
@@ -72,5 +73,13 @@ public class Resenia {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
+    }
+
+    public int getIdLibro() {
+        return idLibro;
     }
 }
