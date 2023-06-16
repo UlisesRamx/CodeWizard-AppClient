@@ -4,7 +4,6 @@ import com.example.codewizard.api.ApiClient;
 import com.example.codewizard.api.ApiResponse;
 import com.example.codewizard.api.HttpMethod;
 import com.example.codewizard.api.model.Libro;
-import com.example.codewizard.api.model.Usuario;
 import com.example.codewizard.singleton.CurrentUser;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,6 +23,8 @@ public class BookService {
                 AUTH_METHOD,
                 CREDENTIALS
         );
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
         ApiResponse apiResponse = new ApiResponse();
 
         try {
@@ -116,8 +117,10 @@ public class BookService {
      * @param libro
      * @return ApiResponse object
      */
-    public static ApiResponse findbook(String libro){
+    public static ApiResponse findBook(String libro){
         String endpoint = "api/books/findbook" + "/" + libro;
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 endpoint,
                 HttpMethod.GET,
@@ -135,6 +138,33 @@ public class BookService {
 
         return apiResponse;
     }
+
+    /**
+     *
+     * @param idLibro
+     * @return ApiResponse object
+     */
+    public static ApiResponse findAutorsBook(int idLibro){
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                "api/books/deletebook",
+                HttpMethod.DELETE,
+                AUTH_METHOD,
+                CREDENTIALS,
+                idLibro
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+
 
     /**
      *
