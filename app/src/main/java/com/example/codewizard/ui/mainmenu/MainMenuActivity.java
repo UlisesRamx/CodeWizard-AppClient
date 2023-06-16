@@ -91,16 +91,22 @@ public class MainMenuActivity extends AppCompatActivity {
         Switch switchBookUser = activityMainMenuBinding.toggleBookUsers;
         if (switchBookUser.isChecked()) {//Usuarios
             ApiResponse apiResponse = UserService.findUser(query);
+            System.out.println("******1 "+apiResponse.getMessage()+ "IsError: "+apiResponse.isError());
+
             if (apiResponse.getUsuarios().size() > 0){
+                System.out.println("******2 "+apiResponse.getMessage()+ "IsError: "+apiResponse.isError());
+
                 bookUserAdapter.setItems(apiResponse.getUsuarios());
-                //Toast.makeText(getApplicationContext(), "Jala: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
+                Toast.makeText(getApplicationContext(), "Jala  Usuario: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }else{
                 Toast.makeText(getApplicationContext(), "Usuario Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }
 
         } else {//Libros
             ApiResponse apiResponse = BookService.findbook(query);
+            System.out.println("******3 "+apiResponse.getMessage()+ "IsError: "+apiResponse.isError());
             if (apiResponse.getLibros().size() > 0){
+                System.out.println("******4 "+apiResponse.getMessage()+ "IsError: "+apiResponse.isError());
                 bookUserAdapter.setItems(apiResponse.getLibros());
                 Toast.makeText(getApplicationContext(), "Jala LIBROS: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }else{
