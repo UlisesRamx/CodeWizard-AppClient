@@ -163,6 +163,8 @@ public class UserService {
      */
     public static ApiResponse findUser(String username){
         String endpoint = "api/users/finduser" + "/" + username;
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 endpoint,
                 HttpMethod.GET,

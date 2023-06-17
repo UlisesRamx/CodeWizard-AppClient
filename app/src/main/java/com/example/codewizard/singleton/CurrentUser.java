@@ -1,5 +1,7 @@
 package com.example.codewizard.singleton;
 
+import com.example.codewizard.api.model.Libro;
+
 public class CurrentUser {
     private static CurrentUser instance;
 
@@ -14,6 +16,7 @@ public class CurrentUser {
     private int tipoUsuario;
     private int otp;
     private int eliminado;
+    private Libro libro;
 
     private CurrentUser() {
     }
@@ -112,5 +115,13 @@ public class CurrentUser {
     public void setEliminado(int eliminado) {
         this.eliminado = eliminado;
     }
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
 }
 

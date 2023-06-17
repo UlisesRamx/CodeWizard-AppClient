@@ -14,6 +14,18 @@
         android:theme="@style/Theme.CodeWizard"
         tools:targetApi="31">
         <activity
+            android:name=".ui.bookDetails.BookDetails"
+            android:exported="false" />
+        <activity
+            android:name=".ui.recoverpassword.RecoverPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.newpassword.NewPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.updatepassword.UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.makereview.MakeReviewActivity"
             android:exported="false" />
         <activity
@@ -26,11 +38,7 @@
             android:name=".ui.perfil.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.signup.SignUpActivity"
-            android:name=".ui.perfil.ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.mainmenu.MainMenuActivity"
+            android:name=".ui.resenias.signup.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"

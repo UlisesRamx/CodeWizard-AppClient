@@ -1,5 +1,6 @@
 package com.example.codewizard.api;
 
+import com.example.codewizard.api.model.Autor;
 import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.model.Resenia;
 import com.example.codewizard.api.model.Usuario;
@@ -22,6 +23,8 @@ public class ApiResponse {
     private List<Libro> libros;
     private  Libro libro;
     private List<Resenia> resenias;
+    private List<Autor> autores;
+    private Autor autor;
 
     public ApiResponse() {
         this.code = 0;
@@ -37,9 +40,11 @@ public class ApiResponse {
         this.libros = new ArrayList<>();
         this.libro = new Libro();
         this.resenias = new ArrayList<>();
+        this.autores = new ArrayList<>();
+        this.autor = new Autor();
     }
 
-    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias) {
+    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias, List<Autor> autores, Autor autor) {
         this.code = code;
         this.error = error;
         this.message = message;
@@ -53,6 +58,8 @@ public class ApiResponse {
         this.libros = libros;
         this.libro = libro;
         this.resenias = resenias;
+        this.autores = autores;
+        this.autor = autor;
     }
 
     public int getCode() {
@@ -165,5 +172,13 @@ public class ApiResponse {
 
     public void setResenias(List<Resenia> resenias) {
         this.resenias = resenias;
+    }
+
+    public List<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
     }
 }

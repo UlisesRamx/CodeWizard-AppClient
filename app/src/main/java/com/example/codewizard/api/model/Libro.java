@@ -13,6 +13,7 @@ public class Libro {
     private String edicion;
     private int numeroDePaginas;
     private String idioma;
+    private String sipnosis;
     private List<Autor> autores;
     private  List<Resenia> resenias;
 
@@ -27,9 +28,10 @@ public class Libro {
         this.idioma = "";
         this.autores = new ArrayList<>();
         this.resenias = new ArrayList<>();
+        this.sipnosis = "";
     }
 
-    public Libro(int idLibro, Editorial editorial, String isbn, Date fechaPublicacion, String titulo, String edicion, int numeroDePaginas, String idioma, List<Autor> autores, List<Resenia> resenias) {
+    public Libro(int idLibro, Editorial editorial, String isbn, Date fechaPublicacion, String titulo, String edicion, int numeroDePaginas, String idioma, List<Autor> autores, List<Resenia> resenias, String sipnosis) {
         this.idLibro = idLibro;
         this.editorial = editorial;
         this.isbn = isbn;
@@ -38,6 +40,7 @@ public class Libro {
         this.edicion = edicion;
         this.numeroDePaginas = numeroDePaginas;
         this.idioma = idioma;
+        this.sipnosis = sipnosis;
         this.autores = autores;
         this.resenias = resenias;
     }
@@ -105,6 +108,13 @@ public class Libro {
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
+    public String getSipnosis() {
+        return sipnosis;
+    }
+
+    public void setsipnosis(String sipnosis) {
+        this.sipnosis = sipnosis;
+    }
 
     public List<Autor> getAutores() {
         return autores;
@@ -121,4 +131,8 @@ public class Libro {
     public void setResenias(List<Resenia> resenias) {
         this.resenias = resenias;
     }
+
+    public String getDetails(){
+        return "Editorial:"+editorial+"\nISBN:"+isbn+"\nFecha Publicacion:"+fechaPublicacion
+                +"\nEdicion:"+edicion+"\nNumero De Paginas:"+numeroDePaginas+"\nIdioma:"+idioma;}
 }

@@ -63,4 +63,17 @@
         app:layout_constraintTop_toBottomOf="@+id/toggleBookUsers"
         app:srcCompat="@android:drawable/ic_dialog_dialer" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/updateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="596dp"
+        android:clickable="true"
+        android:contentDescription="Actualizar Perfil"
+        app:layout_constraintEnd_toStartOf="@+id/fabReviews"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toEndOf="@+id/fabEmail"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
