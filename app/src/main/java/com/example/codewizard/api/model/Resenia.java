@@ -7,29 +7,29 @@ public class Resenia {
     private Usuario usuario;
     private String descripcion;
     private int valoracion;
-    private int activa;
+    private boolean activa;
     private int idUsuario;
+    private int idLibro;
     private int idReporte;
     private Date fechaReporte;
-    private int idLibro;
 
     public Resenia() {
         this.idResenia = 0;
         this.usuario = new Usuario();
         this.descripcion = "";
         this.valoracion = 0;
-        this.activa = 0;
+        this.activa = true;
         this.idUsuario = 0;
         this.idReporte = 0;
         this.fechaReporte = new Date();
     }
 
-    public Resenia(int idResenia, Usuario usuario, String descripcion, int valoracion, int activa, int idUsuario, int idReporte, Date fechaReporte) {
+    public Resenia(int idResenia, Usuario usuario, String descripcion, int valoracion, boolean activa, int idUsuario, int idReporte, Date fechaReporte) {
         this.idResenia = idResenia;
         this.usuario = usuario;
         this.descripcion = descripcion;
         this.valoracion = valoracion;
-        this.activa = 0;
+        this.activa = activa;
         this.idUsuario = idUsuario;
         this.idReporte = idReporte;
         this.fechaReporte = fechaReporte;
@@ -67,11 +67,11 @@ public class Resenia {
         this.valoracion = valoracion;
     }
 
-    public int isActiva() {
+    public boolean isActiva() {
         return activa;
     }
 
-    public void setActiva(int activa) {
+    public void setActiva(boolean activa) {
         this.activa = activa;
     }
 
@@ -83,6 +83,14 @@ public class Resenia {
         this.idUsuario = idUsuario;
     }
 
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
+    }
+
+    public int getIdLibro() {
+        return idLibro;
+    }
+    
     public int getIdReporte() {
         return idReporte;
     }
@@ -97,13 +105,5 @@ public class Resenia {
 
     public void setFechaReporte(Date fechaReporte) {
         this.fechaReporte = fechaReporte;
-    }
-
-    public void setIdLibro(int idLibro) {
-        this.idLibro = idLibro;
-    }
-
-    public int getIdLibro() {
-        return idLibro;
     }
 }
