@@ -26,6 +26,10 @@ import com.example.codewizard.ui.broadcast.BroadcastActivity;
 import com.example.codewizard.ui.passwordchange.PasswordChangeActivity;
 import com.example.codewizard.ui.resenias.ReseniaActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class MainMenuActivity extends AppCompatActivity {
 
     private ActivityMainMenuBinding activityMainMenuBinding;
@@ -39,6 +43,15 @@ public class MainMenuActivity extends AppCompatActivity {
 
         loadView();
 
+        ApiResponse apiResponseBooks = BookService.allBooks();
+        // Obtén el Map de libros del objeto ApiResponseBooks
+        Map<Integer, Libro> librosMap = apiResponseBooks.getLibrosAutores();
+
+        // Crea una lista para almacenar los libros
+        List<Libro> librosList = new ArrayList<>(librosMap.values());
+
+        bookUserAdapter.setItems(librosList);
+
     }
 
     private void loadView(){
@@ -50,8 +63,8 @@ public class MainMenuActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rvBooksUsers);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(bookUserAdapter);
-        //ApiResponse apiResponse = BookService.allBooks();
-        //bookUserAdapter.setItems(apiResponse.getLibros());
+
+
 
         if(CurrentUser.getInstance().getTipoUsuario() == 1){
             activityMainMenuBinding.fabReviews.setVisibility(INVISIBLE);

@@ -57,7 +57,7 @@ public class ApiClient {
         Request.Builder requestBuilder = new Request.Builder()
                 .url(url)
                 .method(httpMethod.name(), body)
-                //.addHeader("Content-Type", "application/json")
+                .addHeader("Content-Type", "application/json")
                 .addHeader("Origin", ORIGIN_HEADER);
 
         if (authMethod != null && credentials != null) {
