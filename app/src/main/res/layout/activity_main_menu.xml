@@ -71,9 +71,22 @@
         android:clickable="true"
         android:contentDescription="Actualizar Perfil"
         app:layout_constraintEnd_toStartOf="@+id/fabReviews"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.892"
         app:layout_constraintStart_toEndOf="@+id/fabEmail"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionBookManagement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="596dp"
+        android:clickable="true"
+        android:contentDescription="Actualizar Perfil"
+        app:layout_constraintEnd_toStartOf="@+id/fabReviews"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toEndOf="@+id/fabEmail"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:srcCompat="@android:drawable/ic_menu_upload" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

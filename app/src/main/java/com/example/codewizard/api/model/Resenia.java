@@ -7,7 +7,7 @@ public class Resenia {
     private Usuario usuario;
     private String descripcion;
     private int valoracion;
-    private boolean activa;
+    private int activa;
     private int idUsuario;
     private int idLibro;
     private int idReporte;
@@ -18,13 +18,13 @@ public class Resenia {
         this.usuario = new Usuario();
         this.descripcion = "";
         this.valoracion = 0;
-        this.activa = true;
+        this.activa = 0;
         this.idUsuario = 0;
         this.idReporte = 0;
         this.fechaReporte = new Date();
     }
 
-    public Resenia(int idResenia, Usuario usuario, String descripcion, int valoracion, boolean activa, int idUsuario, int idReporte, Date fechaReporte) {
+    public Resenia(int idResenia, Usuario usuario, String descripcion, int valoracion, int activa, int idUsuario, int idReporte, Date fechaReporte) {
         this.idResenia = idResenia;
         this.usuario = usuario;
         this.descripcion = descripcion;
@@ -67,11 +67,11 @@ public class Resenia {
         this.valoracion = valoracion;
     }
 
-    public boolean isActiva() {
+    public int isActiva() {
         return activa;
     }
 
-    public void setActiva(boolean activa) {
+    public void setActiva(int activa) {
         this.activa = activa;
     }
 

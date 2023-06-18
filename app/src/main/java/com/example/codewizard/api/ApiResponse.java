@@ -1,6 +1,7 @@
 package com.example.codewizard.api;
 
 import com.example.codewizard.api.model.Autor;
+import com.example.codewizard.api.model.Editorial;
 import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.model.Resenia;
 import com.example.codewizard.api.model.Usuario;
@@ -25,6 +26,8 @@ public class ApiResponse {
     private List<Resenia> resenias;
     private List<Autor> autores;
     private Autor autor;
+    private Editorial editorial;
+    private List<Editorial> editoriales;
 
     public ApiResponse() {
         this.code = 0;
@@ -42,9 +45,11 @@ public class ApiResponse {
         this.resenias = new ArrayList<>();
         this.autores = new ArrayList<>();
         this.autor = new Autor();
+        this.editorial = new Editorial();
+        this.editoriales = new ArrayList<>();
     }
 
-    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias, List<Autor> autores, Autor autor) {
+    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias, List<Autor> autores, Autor autor, Editorial editorial, List<Editorial> editoriales) {
         this.code = code;
         this.error = error;
         this.message = message;
@@ -60,14 +65,8 @@ public class ApiResponse {
         this.resenias = resenias;
         this.autores = autores;
         this.autor = autor;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
+        this.editorial = editorial;
+        this.editoriales = editoriales;
     }
 
     public int getCode() {
@@ -181,4 +180,13 @@ public class ApiResponse {
     public void setAutores(List<Autor> autores) {
         this.autores = autores;
     }
+
+    public Editorial
+    getEditorial() {return editorial;}
+
+    public void setEditorial(Editorial editorial) {this.editorial = editorial;}
+
+    public List<Editorial> getEditoriales() {return editoriales;}
+
+    public void setEditoriales(List<Editorial> editoriales) {this.editoriales = editoriales;}
 }

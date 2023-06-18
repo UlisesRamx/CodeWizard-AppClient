@@ -19,7 +19,7 @@ public class BookService {
     public static ApiResponse allBooks(){
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 "api/books",
-                HttpMethod.POST,
+                HttpMethod.GET,
                 AUTH_METHOD,
                 CREDENTIALS
         );
@@ -204,6 +204,48 @@ public class BookService {
                 CREDENTIALS,
                 libro
         );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+    public static ApiResponse allAuthorsBook(){
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                "api/authors/AllAuthors",
+                HttpMethod.GET,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+    public static ApiResponse allEditorialBooks(){
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                "api/books/allEditoriales",
+                HttpMethod.GET,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
         ApiResponse apiResponse = new ApiResponse();
 
         try {

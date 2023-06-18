@@ -25,9 +25,10 @@ public class MakeReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_review);
 
-        editTextReview = findViewById(R.id.book_comment);;
-        ratingBarScore = findViewById(R.id.rating_book);;
+        editTextReview = findViewById(R.id.book_comment);
+        ratingBarScore = findViewById(R.id.rating_book);
         buttonSetReview = findViewById(R.id.save_button_review);
+
 
         buttonSetReview.setOnClickListener(view -> {
             if (editTextReview.getText().toString().isEmpty() || !editTextReview.getText().toString().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
@@ -49,7 +50,7 @@ public class MakeReviewActivity extends AppCompatActivity {
         resenia.setDescripcion(editTextReview.getText().toString());
         resenia.setValoracion(ratingInt);
         resenia.setIdResenia(2);
-        resenia.setActiva(true);
+        resenia.setActiva(0);
         resenia.setIdLibro(2);
         resenia.setIdUsuario(usuario.getIdUsuario());
         resenia.setUsuario(usuario);

@@ -22,6 +22,7 @@ import com.example.codewizard.api.services.BookService;
 import com.example.codewizard.api.services.UserService;
 import com.example.codewizard.databinding.ActivityMainMenuBinding;
 import com.example.codewizard.singleton.CurrentUser;
+import com.example.codewizard.ui.bookmanagement.BookManagement;
 import com.example.codewizard.ui.broadcast.BroadcastActivity;
 import com.example.codewizard.ui.passwordchange.PasswordChangeActivity;
 import com.example.codewizard.ui.resenias.ReseniaActivity;
@@ -56,9 +57,11 @@ public class MainMenuActivity extends AppCompatActivity {
         if(CurrentUser.getInstance().getTipoUsuario() == 1){
             activityMainMenuBinding.fabReviews.setVisibility(INVISIBLE);
             activityMainMenuBinding.fabEmail.setVisibility(INVISIBLE);
+            activityMainMenuBinding.floatingActionBookManagement.setVisibility(INVISIBLE);
         } else if (CurrentUser.getInstance().getTipoUsuario() == 2) {
             activityMainMenuBinding.fabReviews.setVisibility(VISIBLE);
             activityMainMenuBinding.fabEmail.setVisibility(VISIBLE);
+            activityMainMenuBinding.floatingActionBookManagement.setVisibility(VISIBLE);
         }
         activityMainMenuBinding.updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +114,14 @@ public class MainMenuActivity extends AppCompatActivity {
                 // Lógica para manejar la búsqueda en tiempo real a medida que el texto cambia
                 filterResults(newText);
                 return true;
+            }
+        });
+
+        activityMainMenuBinding.floatingActionBookManagement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, BookManagement.class);
+                startActivity(intent);
             }
         });
 
