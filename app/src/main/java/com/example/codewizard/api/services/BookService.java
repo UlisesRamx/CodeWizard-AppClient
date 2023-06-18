@@ -214,4 +214,112 @@ public class BookService {
 
         return apiResponse;
     }
+
+    /**
+     *
+     * @param idEstado
+     * @param idUsuario
+     * @return ApiResponse object
+     */
+    public static ApiResponse findLibrary(int  idEstado, int idUsuario){
+        String endpoint = "api/books/findLibrary"+"/"+idUsuario+ "/" +idEstado;
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                endpoint,
+                HttpMethod.GET,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+
+
+
+    /**
+     *
+     * @param idUsuario
+     * @param idLibro
+     * @return ApiResponse object
+     */
+    public static ApiResponse findLibraryByUser(int  idUsuario, int idLibro){
+        String endpoint = "api/books/findLibraryByUser"+"/"+idUsuario+ "/" +idLibro;
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                endpoint,
+                HttpMethod.GET,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+    /**
+     * @param libro
+     * @return ApiResponse object
+     */
+    public static ApiResponse registerBookLibrary(Libro libro){
+        String endpoint = "api/books/registerBookLibrary";
+        //String endpoint = "api/books/registerBookLibrary"+"/"+idUsuario+ "/" +idLibro+"/"+idEstado;
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                endpoint,
+                HttpMethod.POST,
+                AUTH_METHOD,
+                CREDENTIALS,
+                libro
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+    /**
+     *
+     * @param idUsuario
+     * @param idLibro
+     * @return ApiResponse object
+     */
+    public static ApiResponse deleteBookLibrary(int idUsuario, int idLibro){
+        String endpoint = "api/books/deleteBookLibrary"+"/"+idUsuario+ "/" +idLibro;
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                endpoint,
+                HttpMethod.DELETE,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+
 }

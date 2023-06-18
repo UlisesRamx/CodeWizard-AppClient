@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Leyendo"
+        android:id="@+id/menuItem_Leyendo"/>
+    <item android:title="Por Leer"
+        android:id="@+id/menuItem_PorLeer"/>
+    <item android:title="Leido"
+        android:id="@+id/menuItem_Leido"/>
+    <item android:title="Sin Biblioteca"
+        android:id="@+id/menuItem_SinBiblioteca"/>
+</menu>
