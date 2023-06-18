@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 if(!password.isEmpty() && !email.isEmpty()){
                     Usuario usuario = new Usuario(email, PasswordUtils.generateSHA512Hash(password));
-                    System.out.println(usuario.getNombre()+" * "+usuario.getPassword());
                     ApiResponse apiResponse = AuthService.login(usuario);
 
                     if (!apiResponse.isError()) {

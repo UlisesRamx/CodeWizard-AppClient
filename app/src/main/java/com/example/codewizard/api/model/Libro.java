@@ -19,6 +19,7 @@ public class Libro {
     private int idEstado;
     private String Estado;
     private int idUsuario;
+    private double calificacion;
 
 
     public Libro() {
@@ -36,10 +37,12 @@ public class Libro {
         this.idEstado=0;
         this.Estado="";
         this.idUsuario=0;
-
+        this.calificacion= 0.0;
     }
 
-    public Libro(int idLibro, Editorial editorial, String isbn, Date fechaPublicacion, String titulo, String edicion, int numeroDePaginas, String idioma, List<Autor> autores, List<Resenia> resenias, String sipnosis,int idEstado,String estado, int idUsuario) {
+    public Libro(int idLibro, Editorial editorial, String isbn, Date fechaPublicacion, String titulo, String edicion,
+                 int numeroDePaginas, String idioma, List<Autor> autores, List<Resenia> resenias, String sipnosis,
+                 int idEstado,String estado, int idUsuario, double calificacion) {
         this.idLibro = idLibro;
         this.editorial = editorial;
         this.isbn = isbn;
@@ -54,6 +57,7 @@ public class Libro {
         this.idEstado=idEstado;
         this.Estado=estado;
         this.idUsuario=idUsuario;
+        this.calificacion=calificacion;
     }
 
     public int getIdLibro() {
@@ -161,6 +165,14 @@ public class Libro {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public double getCalificacion() {
+        return calificacion;
+    }
+
+    public void setgetCalificacion(double calificacion) {
+        this.calificacion = calificacion;
     }
 
     public String getDetails(){
