@@ -6,7 +6,9 @@ import com.example.codewizard.api.model.Resenia;
 import com.example.codewizard.api.model.Usuario;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ApiResponse {
 
@@ -26,6 +28,8 @@ public class ApiResponse {
     private List<Autor> autores;
     private Autor autor;
 
+    private Map<Integer, Libro> librosAutores;
+
     public ApiResponse() {
         this.code = 0;
         this.error = true;
@@ -42,9 +46,10 @@ public class ApiResponse {
         this.resenias = new ArrayList<>();
         this.autores = new ArrayList<>();
         this.autor = new Autor();
+        this.librosAutores = new HashMap<>();
     }
 
-    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias, List<Autor> autores, Autor autor) {
+    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias, List<Autor> autores, Autor autor, Map<Integer, Libro> librosAutores) {
         this.code = code;
         this.error = error;
         this.message = message;
@@ -60,6 +65,7 @@ public class ApiResponse {
         this.resenias = resenias;
         this.autores = autores;
         this.autor = autor;
+        this.librosAutores = librosAutores;
     }
 
     public int getCode() {
@@ -172,5 +178,21 @@ public class ApiResponse {
 
     public void setAutores(List<Autor> autores) {
         this.autores = autores;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public Map<Integer, Libro> getLibrosAutores() {
+        return librosAutores;
+    }
+
+    public void setLibrosAutores(Map<Integer, Libro> librosAutores) {
+        this.librosAutores = librosAutores;
     }
 }

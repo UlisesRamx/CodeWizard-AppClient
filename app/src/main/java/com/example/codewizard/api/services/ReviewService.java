@@ -92,12 +92,14 @@ public class ReviewService {
      * @return ApiResponse object
      */
     public static ApiResponse deleteReview(int idResenia){
+        Resenia resenia = new Resenia();
+        resenia.setIdResenia(idResenia);
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 "api/reviews/deletereview",
                 HttpMethod.DELETE,
                 AUTH_METHOD,
                 CREDENTIALS,
-                idResenia
+                resenia
         );
         ApiResponse apiResponse = new ApiResponse();
 
