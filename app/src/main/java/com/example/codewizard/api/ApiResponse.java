@@ -7,7 +7,9 @@ import com.example.codewizard.api.model.Resenia;
 import com.example.codewizard.api.model.Usuario;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ApiResponse {
 
@@ -29,6 +31,10 @@ public class ApiResponse {
     private Editorial editorial;
     private List<Editorial> editoriales;
 
+    private Map<Integer, Libro> librosAutores;
+
+    private Map<Integer, Libro> librosAutores;
+
     public ApiResponse() {
         this.code = 0;
         this.error = true;
@@ -47,9 +53,10 @@ public class ApiResponse {
         this.autor = new Autor();
         this.editorial = new Editorial();
         this.editoriales = new ArrayList<>();
+        this.librosAutores = new HashMap<>();
     }
 
-    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias, List<Autor> autores, Autor autor, Editorial editorial, List<Editorial> editoriales) {
+    public ApiResponse(int code, boolean error, String message, String token, Usuario user, int otp, String correo, Usuario usuario, List<Usuario> usuarios, int affectedRows, List<Libro> libros, Libro libro, List<Resenia> resenias, List<Autor> autores, Autor autor, Map<Integer, Libro> librosAutores, Editorial editorial, List<Editorial> editoriales) {
         this.code = code;
         this.error = error;
         this.message = message;
@@ -65,6 +72,7 @@ public class ApiResponse {
         this.resenias = resenias;
         this.autores = autores;
         this.autor = autor;
+        this.librosAutores = librosAutores;
         this.editorial = editorial;
         this.editoriales = editoriales;
     }
@@ -179,6 +187,22 @@ public class ApiResponse {
 
     public void setAutores(List<Autor> autores) {
         this.autores = autores;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public Map<Integer, Libro> getLibrosAutores() {
+        return librosAutores;
+    }
+
+    public void setLibrosAutores(Map<Integer, Libro> librosAutores) {
+        this.librosAutores = librosAutores;
     }
 
     public Editorial

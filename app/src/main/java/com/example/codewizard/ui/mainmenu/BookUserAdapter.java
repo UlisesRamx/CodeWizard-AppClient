@@ -109,14 +109,20 @@ public class BookUserAdapter extends RecyclerView.Adapter<BookUserAdapter.ViewHo
         // Vincular los datos del elemento en la posición 'position' con los views del ViewHolder
         // Obtener el elemento en la posición 'position' de la lista filtrada
         if (filteredList.get(position) instanceof Usuario) {
-            Usuario item = (Usuario) filteredList.get(position);
-            holder.textViewName.setText(item.getUsername());
-            holder.textViewDescription.setText("");
+            if(!filteredList.isEmpty()){
+                Usuario item = (Usuario) filteredList.get(position);
+                holder.textViewName.setText(item.getUsername());
+                holder.textViewDescription.setText("");
+            }
         } else {
             if (filteredList.get(position) instanceof Libro) {
-                Libro item = (Libro) filteredList.get(position);
-                holder.textViewName.setText(item.getTitulo());
-                holder.textViewDescription.setText(item.getAutores().get(0).getNombre());
+                if(!filteredList.isEmpty()){
+                    Libro item = (Libro) filteredList.get(position);
+                    holder.textViewName.setText(item.getTitulo());
+                    if(!item.getAutores().isEmpty()){
+                        holder.textViewDescription.setText(item.getAutores().get(0).getNombre());
+                    }
+                }
             }
         }
 

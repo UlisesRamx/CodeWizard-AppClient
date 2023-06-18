@@ -118,7 +118,7 @@ public class Libro {
         return sipnosis;
     }
 
-    public void setsipnosis(String sipnosis) {
+    public void setSipnosis(String sipnosis) {
         this.sipnosis = sipnosis;
     }
 
@@ -140,8 +140,8 @@ public class Libro {
     //public void set
 
     public String getDetails(){
-        return "Editorial:"+editorial+"\nISBN:"+isbn+"\nFecha Publicacion:"+fechaPublicacion
-                +"\nEdicion:"+edicion+"\nNumero De Paginas:"+numeroDePaginas+"\nIdioma:"+idioma;}
+        return "Editorial: "+editorial.getIdEditorial()+"\n\nISBN: "+isbn+"\n\nFecha Publicacion :"+fechaPublicacion
+                +"\n\nEdicion: "+edicion+"\n\nNumero De Paginas :"+numeroDePaginas+"\n\nIdioma: "+idioma;}
 
     public int getIdEditorial() {return idEditorial;}
 

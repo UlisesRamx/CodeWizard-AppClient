@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bookDetails.fragmets.SipnosisFragment">
+    tools:context=".ui.bookDetails.fragments.SipnosisFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,11 +15,29 @@
         android:translationY="100dp" />
 
     <TextView
-        android:id="@+id/txtSipnosis"
+        android:id="@+id/sipnosis"
+        android:layout_width="wrap_content"
+        android:layout_height="305dp"
+        android:layout_below="@+id/tilte"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="79dp"
+        android:gravity="center_horizontal|top"
+        android:text="Title"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tilte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Siposis fragment"
+        android:layout_below="@+id/imageView"
         android:layout_centerInParent="true"
-        android:textSize="32dp"/>
+        android:layout_marginTop="101dp"
+        android:text="Tile fragment"
+        android:textSize="32dp" />
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.singleton.CurrentUser;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class BookService {
     private static final String CREDENTIALS = CurrentUser.getInstance().getToken();
@@ -18,13 +19,11 @@ public class BookService {
      */
     public static ApiResponse allBooks(){
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
-                "api/books",
+                "api/books/all",
                 HttpMethod.GET,
                 AUTH_METHOD,
                 CREDENTIALS
         );
-        System.out.println("CREDENTIALS: "+CREDENTIALS);
-        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
         ApiResponse apiResponse = new ApiResponse();
 
         try {
