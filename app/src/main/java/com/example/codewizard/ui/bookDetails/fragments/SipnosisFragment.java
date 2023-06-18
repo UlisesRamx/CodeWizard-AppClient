@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import com.example.codewizard.R;
 import com.example.codewizard.api.model.Libro;
@@ -29,6 +30,7 @@ public class SipnosisFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_sipnosis, container, false);
+
         textViewSipnosis = view.findViewById(R.id.sipnosis);
         textViewTitle = view.findViewById(R.id.tilte);
         sharedViewModel.getData().observe(getViewLifecycleOwner(), libro -> {

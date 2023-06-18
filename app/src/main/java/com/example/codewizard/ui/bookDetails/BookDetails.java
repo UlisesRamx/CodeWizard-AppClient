@@ -18,7 +18,6 @@ public class BookDetails extends AppCompatActivity  {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewBookDetails viewBookDetails;
-    private SharedViewModel sharedViewModelObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,6 @@ public class BookDetails extends AppCompatActivity  {
 
         SharedViewModel sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
         sharedViewModel.setData(libroRecibido);
-        System.out.println(sharedViewModel.getData().getValue().getSipnosis());
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
 

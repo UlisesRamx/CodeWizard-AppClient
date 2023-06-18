@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codewizard.R;
+import com.example.codewizard.api.model.Autor;
 import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.model.Usuario;
+import com.example.codewizard.api.services.AuthorService;
 import com.example.codewizard.ui.bookDetails.BookDetails;
 import com.example.codewizard.ui.perfil.ProfileActivity;
 import com.example.codewizard.ui.resenias.ReseniaAdapter;
@@ -116,7 +118,18 @@ public class BookUserAdapter extends RecyclerView.Adapter<BookUserAdapter.ViewHo
             if (filteredList.get(position) instanceof Libro) {
                 Libro item = (Libro) filteredList.get(position);
                 holder.textViewName.setText(item.getTitulo());
-                holder.textViewDescription.setText(item.getAutores().get(0).getNombre());
+                if(item.getAutores().size() == 0){
+                    holder.textViewDescription.setText("Sin Autor...");
+                }else if(item.getAutores().size() == 0){
+                    holder.textViewDescription.setText(item.getAutores().get(0).getNombre());
+                }else if(item.getAutores().size() > 0){
+                    String autores = "";
+                    for (Autor autor : item.getAutores()) {
+                        autores = autores+autor.getNombre()+", ";
+                        System.out.println(autores);
+                    }
+                    holder.textViewDescription.setText(autores);
+                }
             }
         }
 

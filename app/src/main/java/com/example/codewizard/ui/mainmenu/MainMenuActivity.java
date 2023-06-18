@@ -121,29 +121,20 @@ public class MainMenuActivity extends AppCompatActivity {
         Switch switchBookUser = activityMainMenuBinding.toggleBookUsers;
         if (switchBookUser.isChecked()) {//Usuarios
             ApiResponse apiResponse = UserService.findUser(query);
-            System.out.println("******1 "+apiResponse.getMessage()+ "IsError: "+apiResponse.isError());
             if (apiResponse.getUsuarios().size() > 0){
-                System.out.println("******2 "+apiResponse.getMessage()+ "IsError: "+apiResponse.isError());
                 bookUserAdapter.setItems(apiResponse.getUsuarios());
                 Toast.makeText(getApplicationContext(), "Jala  Usuario: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }else{
                 Toast.makeText(getApplicationContext(), "Usuario Error: " + apiResponse.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }
         } else {//Libros
-
             ApiResponse apiResponseBooks = BookService.findBook(query);
-
-            System.out.println("******3 "+apiResponseBooks.getMessage()+ "IsError: "+apiResponseBooks.isError());
             if (apiResponseBooks.getLibros().size() > 0){
                 ApiResponse apiResponseBooksAuthors = new ApiResponse();
-                System.out.println("#Libros:"+apiResponseBooks.getLibros().size());
-                System.out.println("idLibro:"+apiResponseBooks.getLibros().get(0).getIdLibro());
                 for (Libro libro : apiResponseBooks.getLibros()) {
                     apiResponseBooksAuthors = AuthorService.findAutorsBook(libro.getIdLibro());
                     libro.setAutores(apiResponseBooksAuthors.getAutores());
-                    System.out.println("idLibro:"+libro.getIdLibro()+" Autores:"+libro.getAutores());
                 }
-                System.out.println("******4 "+apiResponseBooks.getMessage()+ "IsError: "+apiResponseBooks.isError());
                 bookUserAdapter.setItems(apiResponseBooks.getLibros());
                 Toast.makeText(getApplicationContext(), "Jala LIBROS: " + apiResponseBooks.getUsuarios().size(), Toast.LENGTH_SHORT).show(); // Muestra un Toast con el mensaje de error
             }else{

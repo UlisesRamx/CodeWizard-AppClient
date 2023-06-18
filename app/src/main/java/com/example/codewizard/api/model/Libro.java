@@ -16,6 +16,8 @@ public class Libro {
     private String sipnosis;
     private List<Autor> autores;
     private  List<Resenia> resenias;
+    private int idEstado;
+    private String Estado;
 
     public Libro() {
         this.idLibro = 0;
@@ -29,9 +31,11 @@ public class Libro {
         this.autores = new ArrayList<>();
         this.resenias = new ArrayList<>();
         this.sipnosis = "";
+        this.idEstado=0;
+        this.Estado="";
     }
 
-    public Libro(int idLibro, Editorial editorial, String isbn, Date fechaPublicacion, String titulo, String edicion, int numeroDePaginas, String idioma, List<Autor> autores, List<Resenia> resenias, String sipnosis) {
+    public Libro(int idLibro, Editorial editorial, String isbn, Date fechaPublicacion, String titulo, String edicion, int numeroDePaginas, String idioma, List<Autor> autores, List<Resenia> resenias, String sipnosis,int idEstado,String estado) {
         this.idLibro = idLibro;
         this.editorial = editorial;
         this.isbn = isbn;
@@ -43,6 +47,8 @@ public class Libro {
         this.sipnosis = sipnosis;
         this.autores = autores;
         this.resenias = resenias;
+        this.idEstado=idEstado;
+        this.Estado=estado;
     }
 
     public int getIdLibro() {
@@ -130,6 +136,19 @@ public class Libro {
 
     public void setResenias(List<Resenia> resenias) {
         this.resenias = resenias;
+    }
+    public String getEstado() {
+        return Estado;
+    }
+    public void setEstado(String estado) {
+        this.Estado = Estado;
+    }
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
     }
 
     public String getDetails(){

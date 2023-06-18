@@ -215,4 +215,36 @@ public class BookService {
 
         return apiResponse;
     }
+
+    /**
+     *
+     * @param idEstado
+     * @param idUsuario
+     * @return ApiResponse object
+     */
+    public static ApiResponse findLibrary(int  idEstado, int idUsuario){
+        String endpoint = "api/books/findLibrary"+"/"+idUsuario+ "/" +idEstado;
+        System.out.println("findLibrary");
+        //String endpoint = "api/books/findLibrary";
+        System.out.println("CREDENTIALS: "+CREDENTIALS);
+        System.out.println("AUTH_METHOD: "+AUTH_METHOD);
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                endpoint,
+                HttpMethod.GET,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
+
+
 }
