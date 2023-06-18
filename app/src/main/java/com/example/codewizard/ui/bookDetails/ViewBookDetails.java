@@ -3,18 +3,24 @@ package com.example.codewizard.ui.bookDetails;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.codewizard.api.model.Libro;
-import com.example.codewizard.ui.bookDetails.fragmets.DetailsFragment;
-import com.example.codewizard.ui.bookDetails.fragmets.ReviewsFragment;
-import com.example.codewizard.ui.bookDetails.fragmets.SipnosisFragment;
+import com.example.codewizard.ui.bookDetails.fragments.DetailsFragment;
+import com.example.codewizard.ui.bookDetails.fragments.ReviewsFragment;
+import com.example.codewizard.ui.bookDetails.fragments.SipnosisFragment;
 
-public class ViewBookDetails extends FragmentStateAdapter {
-    Libro libro;
+    public class ViewBookDetails extends FragmentStateAdapter {
+    public static SharedViewModel sharedViewModel;
 
-    public ViewBookDetails(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
+    public ViewBookDetails(FragmentActivity fragmentManager) {
+        super(fragmentManager);
     }
 
     @NonNull
@@ -22,27 +28,20 @@ public class ViewBookDetails extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                SipnosisFragment sipnosisFragment = new SipnosisFragment();
-                //sipnosisFragment.setLibro(libro);
-                return sipnosisFragment;
+                return new SipnosisFragment();
             case 1:
-                DetailsFragment detailsFragment = new DetailsFragment();
-                detailsFragment.setLibro(libro);
-                return detailsFragment;
+                return new DetailsFragment();
             case 2:
-                ReviewsFragment reviewsFragment = new ReviewsFragment();
-                reviewsFragment.setLibro(libro);
-                return reviewsFragment;
+                return new ReviewsFragment();
             default:
                 return new SipnosisFragment();
 
         }
+
     }
 
     @Override
     public int getItemCount() {
         return 3;
     }
-
-    public void setLibro(Libro libro){this.libro = libro;}
 }

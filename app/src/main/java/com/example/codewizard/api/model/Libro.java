@@ -133,6 +133,6 @@ public class Libro {
     }
 
     public String getDetails(){
-        return "Editorial:"+editorial+"\nISBN:"+isbn+"\nFecha Publicacion:"+fechaPublicacion
-                +"\nEdicion:"+edicion+"\nNumero De Paginas:"+numeroDePaginas+"\nIdioma:"+idioma;}
+        return "Editorial: "+editorial.getIdEditorial()+"\n\nISBN: "+isbn+"\n\nFecha Publicacion :"+fechaPublicacion
+                +"\n\nEdicion: "+edicion+"\n\nNumero De Paginas :"+numeroDePaginas+"\n\nIdioma: "+idioma;}
 }

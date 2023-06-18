@@ -2,12 +2,10 @@ package com.example.codewizard.ui.bookDetails;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TableLayout;
 
 import com.example.codewizard.R;
 import com.example.codewizard.api.model.Libro;
-import com.example.codewizard.api.model.Usuario;
-import com.example.codewizard.ui.bookDetails.fragmets.SharedViewModel;
+import com.example.codewizard.ui.bookDetails.fragments.DetailsFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -20,6 +18,7 @@ public class BookDetails extends AppCompatActivity  {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewBookDetails viewBookDetails;
+    private SharedViewModel sharedViewModelObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +32,7 @@ public class BookDetails extends AppCompatActivity  {
 
         SharedViewModel sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
         sharedViewModel.setData(libroRecibido);
-
-
-
-
-System.out.println(libroRecibido.getTitulo());
-
+        System.out.println(sharedViewModel.getData().getValue().getSipnosis());
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
 
