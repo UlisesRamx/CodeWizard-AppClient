@@ -74,38 +74,25 @@ public class SipnosisFragment extends Fragment {
                         switch (item.getItemId()){
                             case R.id.menuItem_Leyendo:
                                 apiResponseLibraryChange = BookService.deleteBookLibrary(CurrentUser.getInstance().getIdUsuario(),idLibro);
-                                //apiResponseLibraryChange.getCode();
-                                System.out.println("Leyendo DELETE: "+apiResponseLibraryChange.getCode());
                                 libro.setIdEstado(1);
                                 apiResponseLibraryChange = BookService.registerBookLibrary(libro);
                                 buttonBilioteca.setText("Leyendo");
-                                System.out.println("Leyendo REGISTER: "+apiResponseLibraryChange.getCode());
                                 break;
                             case R.id.menuItem_PorLeer:
-                                System.out.println("Por Leer");
                                 apiResponseLibraryChange = BookService.deleteBookLibrary(CurrentUser.getInstance().getIdUsuario(),idLibro);
-                                System.out.println("Por Leer DELETE: "+apiResponseLibraryChange.getCode());
                                 libro.setIdEstado(2);
                                 apiResponseLibraryChange = BookService.registerBookLibrary(libro);
                                 buttonBilioteca.setText("Por Leer");
-                                System.out.println("Por Leer REGISTER: "+apiResponseLibraryChange.getCode());
                                 break;
                             case R.id.menuItem_Leido:
-                                System.out.println("Leido");
                                 apiResponseLibraryChange = BookService.deleteBookLibrary(CurrentUser.getInstance().getIdUsuario(),idLibro);
-                                //apiResponseLibraryChange.getCode();
-                                System.out.println("Leido DELETE: "+apiResponseLibraryChange.getCode());
                                 libro.setIdEstado(3);
                                 apiResponseLibraryChange = BookService.registerBookLibrary(libro);
                                 buttonBilioteca.setText("Leido");
-                                System.out.println("Leido REGISTER: "+apiResponseLibraryChange.getCode());
                                 break;
                             case R.id.menuItem_SinBiblioteca:
-                                System.out.println("Sin  Bbilioteca");
                                 apiResponseLibraryChange = BookService.deleteBookLibrary(CurrentUser.getInstance().getIdUsuario(),idLibro);
-                                //apiResponseLibraryChange.getCode();
                                 buttonBilioteca.setText("Sin  Biblioteca");
-                                System.out.println("Leido DELETE: "+apiResponseLibraryChange.getCode());
                                 break;
                             default:
                                 System.out.println("Default");
@@ -122,12 +109,7 @@ public class SipnosisFragment extends Fragment {
     }
 
     private void changeTextButton(int idLibro){
-        System.out.println("111111 text user: "+CurrentUser.getInstance().getIdUsuario()+" text idLibro: "+idLibro);
-
         ApiResponse apiResponseLibrary= BookService.findLibraryByUser(CurrentUser.getInstance().getIdUsuario(),idLibro);
-        System.out.println("2222222 text user: "+CurrentUser.getInstance().getIdUsuario()+" text idLibro: "+idLibro);
-
-        System.out.println("333333 text Option: "+apiResponseLibrary.getLibro().getIdEstado());
         int idEstado = 0;
         if(apiResponseLibrary.getLibros().size()>0){
             idEstado = apiResponseLibrary.getLibros().get(0).getIdEstado();

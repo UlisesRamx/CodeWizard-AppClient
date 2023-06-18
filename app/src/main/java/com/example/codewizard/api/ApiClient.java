@@ -44,8 +44,6 @@ public class ApiClient {
     public static CompletableFuture<ApiResponse> sendRequest(String endpoint, HttpMethod httpMethod, String authMethod, String credentials, Object... arguments) {
         String url = URL + "/" + endpoint;
 
-        System.out.println("**  "+url);
-
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = null;
