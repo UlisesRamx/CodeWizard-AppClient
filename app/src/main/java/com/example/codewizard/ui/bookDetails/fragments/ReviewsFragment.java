@@ -1,4 +1,4 @@
-package com.example.codewizard.ui.bookDetails.fragmets;
+package com.example.codewizard.ui.bookDetails.fragments;
 
 import android.os.Bundle;
 
@@ -11,14 +11,14 @@ import android.view.ViewGroup;
 import com.example.codewizard.R;
 import com.example.codewizard.api.model.Libro;
 
-public class DetailsFragment extends Fragment {
+public class ReviewsFragment extends Fragment {
     private Libro libro;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false);
+        return inflater.inflate(R.layout.fragment_reviews, container, false);
     }
 
     public void setLibro(Libro libro){this.libro =  libro;}

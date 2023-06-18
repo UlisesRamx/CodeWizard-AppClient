@@ -1,4 +1,4 @@
-package com.example.codewizard.ui.bookDetails.fragmets;
+package com.example.codewizard.ui.bookDetails;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
