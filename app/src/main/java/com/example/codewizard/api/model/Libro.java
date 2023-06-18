@@ -118,7 +118,7 @@ public class Libro {
         return sipnosis;
     }
 
-    public void setsipnosis(String sipnosis) {
+    public void setSipnosis(String sipnosis) {
         this.sipnosis = sipnosis;
     }
 
