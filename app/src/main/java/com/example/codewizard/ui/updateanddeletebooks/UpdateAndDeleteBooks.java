@@ -1,5 +1,6 @@
 package com.example.codewizard.ui.updateanddeletebooks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import com.example.codewizard.api.model.Autor;
 import com.example.codewizard.api.model.Editorial;
 import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.services.BookService;
+import com.example.codewizard.ui.registerbook.RegisterBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class UpdateAndDeleteBooks extends AppCompatActivity {
     private Spinner spinnerIdioma;
     private Spinner spinnerAutor;
     private Spinner spinnerEditorial;
+    private Libro selectedLibro;
 
 
 
@@ -60,11 +63,19 @@ public class UpdateAndDeleteBooks extends AppCompatActivity {
 
         spinnerBooks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Libro selectedLibro = (Libro) parent.getItemAtPosition(position);
+                selectedLibro = (Libro) parent.getItemAtPosition(position);
                 updateFields(selectedLibro);
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getApplicationContext(), "Seleccione un libro", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonDelete.setOnClickListener(view -> {
+            if(selectedLibro.getIdLibro() > 0){
+                deleteBook(selectedLibro.getIdLibro());
+            }else{
                 Toast.makeText(getApplicationContext(), "Seleccione un libro", Toast.LENGTH_SHORT).show();
             }
         });
@@ -152,6 +163,26 @@ public class UpdateAndDeleteBooks extends AppCompatActivity {
             }
         }
         return 0;
+    }
+
+    private void deleteBook(int idLibro){
+        ApiResponse apiResponseBooks = BookService.deleteBook(idLibro);
+        if(!apiResponseBooks.isError()){
+            Toast.makeText(getApplicationContext(), "Acción realizada con exito", Toast.LENGTH_SHORT).show();
+            ArrayAdapter<Libro> adapterLibrosToDelete = (ArrayAdapter<Libro>) spinnerBooks.getAdapter();
+            if (adapterLibrosToDelete != null) {
+                for (int i = 0; i < adapterLibrosToDelete.getCount(); i++) {
+                    Libro libro = adapterLibrosToDelete.getItem(i);
+                    if (libro != null && libro.equals(selectedLibro)) {
+                        adapterLibrosToDelete.remove(libro);
+                        adapterLibrosToDelete.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "Error, inténtelo más tarde", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
