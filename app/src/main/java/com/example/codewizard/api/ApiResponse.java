@@ -30,9 +30,6 @@ public class ApiResponse {
     private Autor autor;
     private Editorial editorial;
     private List<Editorial> editoriales;
-
-    private Map<Integer, Libro> librosAutores;
-
     private Map<Integer, Libro> librosAutores;
 
     public ApiResponse() {

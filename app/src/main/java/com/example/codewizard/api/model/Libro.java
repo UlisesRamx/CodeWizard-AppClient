@@ -150,4 +150,7 @@ public class Libro {
     public int getIdAutor() {return idAutor;}
 
     public void setIdAutor(int idAutor) {this.idAutor = idAutor;}
+
+    @Override
+    public String toString() { return titulo + " " + isbn ; }
 }

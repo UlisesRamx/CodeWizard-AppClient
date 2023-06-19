@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="idiomas_array">
+        <item>Español</item>
+        <item>Portugues</item>
+        <item>Quechua</item>
+        <item>Guarani</item>
+        <item>Aymara</item>
+        <item>Nahuatl</item>
+        <item>Ingles</item>
+        <!-- Add more items as needed -->
+    </string-array>
+</resources>
