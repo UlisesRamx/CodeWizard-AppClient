@@ -11,6 +11,7 @@ public class Usuario {
     private int tipoUsuario;
     private  int otp;
     private int eliminado;
+    private int totalReportes = 0;
 
     public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasena, int i, int i1, int i2) {
         this.idUsuario = 0;
@@ -147,5 +148,12 @@ public Usuario(){
     public void setEliminado(int eliminado) {
         this.eliminado = eliminado;
     }
+
+    public int getTotalReportes() { return totalReportes; }
+
+    public void setTotalReportes(int totalReportes) { this.totalReportes = totalReportes; }
+
+    @Override
+    public String toString() { return username; }
 }
 

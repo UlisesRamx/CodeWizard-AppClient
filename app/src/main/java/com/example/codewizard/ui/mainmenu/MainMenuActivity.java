@@ -24,6 +24,7 @@ import com.example.codewizard.databinding.ActivityMainMenuBinding;
 import com.example.codewizard.singleton.CurrentUser;
 import com.example.codewizard.ui.bookmanagement.BookManagement;
 import com.example.codewizard.ui.broadcast.BroadcastActivity;
+import com.example.codewizard.ui.deleteuser.DeleteUser;
 import com.example.codewizard.ui.passwordchange.PasswordChangeActivity;
 import com.example.codewizard.ui.resenias.ReseniaActivity;
 
@@ -71,10 +72,12 @@ public class MainMenuActivity extends AppCompatActivity {
             activityMainMenuBinding.fabReviews.setVisibility(INVISIBLE);
             activityMainMenuBinding.fabEmail.setVisibility(INVISIBLE);
             activityMainMenuBinding.floatingActionBookManagement.setVisibility(INVISIBLE);
+            activityMainMenuBinding.floatingActionEliminarUsuario.setVisibility(INVISIBLE);
         } else if (CurrentUser.getInstance().getTipoUsuario() == 2) {
             activityMainMenuBinding.fabReviews.setVisibility(VISIBLE);
             activityMainMenuBinding.fabEmail.setVisibility(VISIBLE);
             activityMainMenuBinding.floatingActionBookManagement.setVisibility(VISIBLE);
+            activityMainMenuBinding.floatingActionEliminarUsuario.setVisibility(VISIBLE);
         }
         activityMainMenuBinding.updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +137,14 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenuActivity.this, BookManagement.class);
+                startActivity(intent);
+            }
+        });
+
+        activityMainMenuBinding.floatingActionEliminarUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, DeleteUser.class);
                 startActivity(intent);
             }
         });

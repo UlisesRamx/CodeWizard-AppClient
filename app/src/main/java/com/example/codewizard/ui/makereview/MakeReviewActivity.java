@@ -2,6 +2,7 @@ package com.example.codewizard.ui.makereview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,10 +11,12 @@ import android.widget.Toast;
 
 import com.example.codewizard.R;
 import com.example.codewizard.api.ApiResponse;
+import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.model.Resenia;
 import com.example.codewizard.api.model.Usuario;
 import com.example.codewizard.api.services.ReviewService;
 import com.example.codewizard.singleton.CurrentUser;
+import com.google.gson.Gson;
 
 public class MakeReviewActivity extends AppCompatActivity {
     private EditText editTextReview;
@@ -29,17 +32,21 @@ public class MakeReviewActivity extends AppCompatActivity {
         ratingBarScore = findViewById(R.id.rating_book);
         buttonSetReview = findViewById(R.id.save_button_review);
 
+        Intent intent = getIntent();
+        String libroJson = intent.getStringExtra("libro");
+        Gson gson = new Gson();
+        Libro libroRecibido = gson.fromJson(libroJson, Libro.class);
 
         buttonSetReview.setOnClickListener(view -> {
             if (editTextReview.getText().toString().isEmpty() || !editTextReview.getText().toString().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
                 Toast.makeText(getApplicationContext(), "Campos inválidos", Toast.LENGTH_SHORT).show();
             } else {
-                setReview();
+                setReview(libroRecibido);
             }
         });
     }
 
-    private void setReview(){
+    private void setReview(Libro libro){
         float rating = ratingBarScore.getRating();
         int ratingInt = Math.round(rating);
 
@@ -50,8 +57,8 @@ public class MakeReviewActivity extends AppCompatActivity {
         resenia.setDescripcion(editTextReview.getText().toString());
         resenia.setValoracion(ratingInt);
         resenia.setIdResenia(2);
-        resenia.setActiva(0);
-        resenia.setIdLibro(2);
+        int id = CurrentUser.getInstance().getLibro().getIdLibro();
+        resenia.setIdLibro(libro.getIdLibro());
         resenia.setIdUsuario(usuario.getIdUsuario());
         resenia.setUsuario(usuario);
 

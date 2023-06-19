@@ -14,6 +14,9 @@
         android:theme="@style/Theme.CodeWizard"
         tools:targetApi="31">
         <activity
+            android:name=".ui.deleteuser.DeleteUser"
+            android:exported="false" />
+        <activity
             android:name=".ui.updateanddeletebooks.UpdateAndDeleteBooks"
             android:exported="false" />
         <activity

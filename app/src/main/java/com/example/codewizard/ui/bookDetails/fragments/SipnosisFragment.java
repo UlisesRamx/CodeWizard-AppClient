@@ -51,6 +51,9 @@ public class SipnosisFragment extends Fragment {
             textViewTitle.setText(libro.getTitulo());
             textViewSipnosis.setText(libro.getSipnosis());
             idLibro = libro.getIdLibro();
+            Libro objectLibro = new Libro();
+            libro.setIdLibro(idLibro);
+            CurrentUser.getInstance().setLibro(objectLibro);
             changeTextButton(idLibro);
             System.out.println("4444444"+idLibro);
         });

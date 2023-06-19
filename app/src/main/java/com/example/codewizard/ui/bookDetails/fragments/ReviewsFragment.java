@@ -1,5 +1,6 @@
 package com.example.codewizard.ui.bookDetails.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -19,8 +20,14 @@ import com.example.codewizard.api.ApiResponse;
 import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.services.ReviewService;
 import com.example.codewizard.singleton.CurrentUser;
+import com.example.codewizard.ui.bookDetails.BookDetails;
 import com.example.codewizard.ui.bookDetails.SharedViewModel;
+import com.example.codewizard.ui.deleteuser.DeleteUser;
+import com.example.codewizard.ui.mainmenu.MainMenuActivity;
+import com.example.codewizard.ui.makereview.MakeReviewActivity;
 import com.example.codewizard.ui.resenias.ReseniaAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 public class ReviewsFragment extends Fragment {
     private Libro libro;
@@ -28,6 +35,7 @@ public class ReviewsFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private ReseniaAdapter reseniaAdapter;
     View view;
+    private FloatingActionButton floatingActionButtonReseniar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,11 +46,23 @@ public class ReviewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_reviews, container, false);
+        floatingActionButtonReseniar = view.findViewById(R.id.floatingActionButtonReseniar);
+        floatingActionButtonReseniar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireActivity(), MakeReviewActivity.class);
+                Gson gson = new Gson();
+                String libroJson = gson.toJson(libro);
+                intent.putExtra("libro", libroJson);
+                startActivity(intent);
+            }
+        });
+
         sharedViewModel.getData().observe(getViewLifecycleOwner(), libro -> {
             // Actualiza la interfaz de usuario con la información del libro
             loadView(libro.getIdLibro());
+            this.libro = libro;
         });
         return view;
     }
@@ -50,6 +70,7 @@ public class ReviewsFragment extends Fragment {
     public void setLibro(Libro libro){this.libro =  libro;}
 
     private void loadView(int idLibro){
+
         reseniaAdapter = new ReseniaAdapter(this.getContext());
         RecyclerView recyclerView = view.findViewById(R.id.rvReviews);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));

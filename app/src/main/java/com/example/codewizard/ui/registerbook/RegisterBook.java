@@ -50,7 +50,9 @@ public class RegisterBook extends AppCompatActivity {
         editTextNumeroDePaginas = findViewById(R.id.editTextNumeroDePaginas);
 
         buttonRegisterBook.setOnClickListener(view -> {
-            registerBook();
+            if (validateFields()) {
+                registerBook();
+            }
         });
     }
 
@@ -110,6 +112,41 @@ public class RegisterBook extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapterIdioma = ArrayAdapter.createFromResource(this, R.array.idiomas_array, android.R.layout.simple_spinner_item);
         adapterIdioma.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerIdioma.setAdapter(adapterIdioma);
+    }
+
+    private boolean validateFields() {
+        boolean validation = true;
+        String sinopsis = editTextSinopsis.getText().toString().trim();
+        String titulo = editTextTitulo.getText().toString().trim();
+        String isbn = editTextIsbn.getText().toString().trim();
+        String edicion = editTextEdicion.getText().toString().trim();
+        String fechaPublicacion = editTextFechaPublicacion.getText().toString().trim();
+        String numeroDePaginas = editTextNumeroDePaginas.getText().toString().trim();
+        if (sinopsis.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Sinopsis está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (titulo.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Título está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (isbn.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo ISBN está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (edicion.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Edición está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (fechaPublicacion.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Fecha de Publicación está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (numeroDePaginas.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Número de Páginas está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        return validation;
     }
 
 }

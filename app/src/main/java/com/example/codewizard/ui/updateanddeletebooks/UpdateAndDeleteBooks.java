@@ -1,6 +1,7 @@
 package com.example.codewizard.ui.updateanddeletebooks;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +21,9 @@ import com.example.codewizard.api.model.Libro;
 import com.example.codewizard.api.services.BookService;
 import com.example.codewizard.ui.registerbook.RegisterBook;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -73,6 +76,14 @@ public class UpdateAndDeleteBooks extends AppCompatActivity {
         });
 
         buttonDelete.setOnClickListener(view -> {
+            if(selectedLibro.getIdLibro() > 0){
+                deleteBook(selectedLibro.getIdLibro());
+            }else{
+                Toast.makeText(getApplicationContext(), "Seleccione un libro", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonSave.setOnClickListener(view -> {
             if(selectedLibro.getIdLibro() > 0){
                 deleteBook(selectedLibro.getIdLibro());
             }else{
@@ -182,6 +193,70 @@ public class UpdateAndDeleteBooks extends AppCompatActivity {
             }
         }else{
             Toast.makeText(getApplicationContext(), "Error, inténtelo más tarde", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean validateFields() {
+        boolean validation = true;
+        String sinopsis = editTextSinopsis.getText().toString().trim();
+        String titulo = editTextTitulo.getText().toString().trim();
+        String isbn = editTextIsbn.getText().toString().trim();
+        String edicion = editTextEdicion.getText().toString().trim();
+        String fechaPublicacion = editTextFechaPublicacion.getText().toString().trim();
+        String numeroDePaginas = editTextNumeroDePaginas.getText().toString().trim();
+        if (sinopsis.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Sinopsis está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (titulo.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Título está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (isbn.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo ISBN está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (edicion.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Edición está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (fechaPublicacion.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Fecha de Publicación está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        if (numeroDePaginas.isEmpty()) {
+            validation = false;
+            Toast.makeText(getApplicationContext(), "Campo Número de Páginas está vacío.", Toast.LENGTH_SHORT).show();
+        }
+        return validation;
+    }
+
+    private void updateBook() {
+        Libro libro = new Libro();
+        libro.setEdicion(editTextEdicion.getText().toString());
+        libro.setSipnosis(editTextSinopsis.getText().toString());
+        libro.setTitulo(editTextTitulo.getText().toString());
+        libro.setIsbn(editTextIsbn.getText().toString());
+        SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yy");
+        try {
+            Date fechaPublicacion = inputFormat.parse(editTextFechaPublicacion.getText().toString());
+            libro.setFechaPublicacion(fechaPublicacion);
+            Toast.makeText(getApplicationContext(), fechaPublicacion.toString(), Toast.LENGTH_SHORT).show();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Autor autorSelected = (Autor) spinnerAutor.getSelectedItem();
+        libro.setIdAutor(autorSelected.getIdAutor());
+        Editorial editorialSelected = (Editorial) spinnerEditorial.getSelectedItem();
+        libro.setIdEditorial(editorialSelected.getIdEditorial());
+        libro.setIdioma(spinnerIdioma.getSelectedItem().toString());
+        libro.setNumeroDePaginas(Integer.parseInt(editTextNumeroDePaginas.getText().toString()));
+        Toast.makeText(getApplicationContext(), editTextFechaPublicacion.getText().toString(), Toast.LENGTH_SHORT).show();
+        ApiResponse apiResponse = BookService.updateBook(libro);
+        if(!apiResponse.isError()){
+            Toast.makeText(getApplicationContext(), "El libro se actualizo con exito", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getApplicationContext(), "No se pudo actualizar el libro", Toast.LENGTH_SHORT).show();
         }
     }
 

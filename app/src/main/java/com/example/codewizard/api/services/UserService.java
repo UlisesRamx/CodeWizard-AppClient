@@ -258,6 +258,26 @@ public class UserService {
 
         return apiResponse;
     }
+
+    public static ApiResponse getAllUsers( ){
+        String endpoint = "api/users/allUsers";
+        CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
+                endpoint,
+                HttpMethod.GET,
+                AUTH_METHOD,
+                CREDENTIALS
+        );
+        ApiResponse apiResponse = new ApiResponse();
+
+        try {
+            apiResponse = future.join();
+        } catch (Exception e) {
+            apiResponse.setError(true);
+            apiResponse.setMessage(e.getMessage());
+        }
+
+        return apiResponse;
+    }
 }
 
 class UserPasswordChange{

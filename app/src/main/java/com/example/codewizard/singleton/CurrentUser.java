@@ -19,6 +19,18 @@ public class CurrentUser {
     private Libro libro;
 
     private CurrentUser() {
+        this.token = "";
+        this.idUsuario = 0;
+        this.username = "";
+        this.nombre = "";
+        this.apellidoPaterno = "";
+        this.apellidoMaterno = "";
+        this.email = "";
+        this.password = "";
+        this.tipoUsuario = 0;
+        this.otp = 0;
+        this.eliminado = 0;
+        this.libro = new Libro();
     }
 
     public static CurrentUser getInstance() {
