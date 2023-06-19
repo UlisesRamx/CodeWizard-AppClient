@@ -3,6 +3,7 @@ package com.example.codewizard.ui.passwordchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,7 +15,9 @@ import com.example.codewizard.api.services.UserService;
 import com.example.codewizard.singleton.CurrentUser;
 import com.example.codewizard.ui.mainmenu.MainMenuActivity;
 import com.example.codewizard.segurity.*;
+import com.example.codewizard.ui.perfil.ProfileActivity;
 import com.example.codewizard.ui.updatepassword.UpdatePasswordActivity;
+import com.google.gson.Gson;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,7 +41,7 @@ import java.security.Security;
 
 
 public class PasswordChangeActivity extends AppCompatActivity{
-        private EditText editTextNombre;
+    private EditText editTextNombre;
     private EditText editTextApellidoPaterno;
     private EditText editTextApellidoMaterno;
     private EditText editTextCorreo;
@@ -47,6 +50,7 @@ public class PasswordChangeActivity extends AppCompatActivity{
     private EditText editTextConfirmarContrasena;
     private Button buttonActualizar;
     private Button buttonPassword;
+    private Button buttonBiblioteca;
 
     private TextView textViewErrorNombre;
     private TextView textViewErrorApellidoPaterno;
@@ -68,6 +72,7 @@ public class PasswordChangeActivity extends AppCompatActivity{
         editTextNombreUsuario = findViewById(R.id.editTextNombreUsuario);
         buttonActualizar = findViewById(R.id.buttonActualizar);
         buttonPassword = findViewById(R.id.buttonCambiarContrasena);
+        buttonBiblioteca = findViewById(R.id.buttonConsultarBiblioteca);
 
 
 
@@ -108,6 +113,17 @@ public class PasswordChangeActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UpdatePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonBiblioteca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Gson gson = new Gson();
+                String usuarioJson = gson.toJson(CurrentUser.getInstance());
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.putExtra("usuario", usuarioJson);
                 startActivity(intent);
             }
         });
