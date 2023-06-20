@@ -77,15 +77,15 @@ public class UpdateAndDeleteBooks extends AppCompatActivity {
 
         buttonDelete.setOnClickListener(view -> {
             if(selectedLibro.getIdLibro() > 0){
-                deleteBook(selectedLibro.getIdLibro());
+                deleteBook(selectedLibro);
             }else{
                 Toast.makeText(getApplicationContext(), "Seleccione un libro", Toast.LENGTH_SHORT).show();
             }
         });
 
         buttonSave.setOnClickListener(view -> {
-            if(selectedLibro.getIdLibro() > 0){
-                deleteBook(selectedLibro.getIdLibro());
+            if(validateFields()){
+                updateBook();
             }else{
                 Toast.makeText(getApplicationContext(), "Seleccione un libro", Toast.LENGTH_SHORT).show();
             }
@@ -176,8 +176,8 @@ public class UpdateAndDeleteBooks extends AppCompatActivity {
         return 0;
     }
 
-    private void deleteBook(int idLibro){
-        ApiResponse apiResponseBooks = BookService.deleteBook(idLibro);
+    private void deleteBook(Libro libroRecived){
+        ApiResponse apiResponseBooks = BookService.deleteBook(libroRecived);
         if(!apiResponseBooks.isError()){
             Toast.makeText(getApplicationContext(), "Acción realizada con exito", Toast.LENGTH_SHORT).show();
             ArrayAdapter<Libro> adapterLibrosToDelete = (ArrayAdapter<Libro>) spinnerBooks.getAdapter();

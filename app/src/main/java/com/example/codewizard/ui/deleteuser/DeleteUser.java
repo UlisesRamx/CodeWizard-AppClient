@@ -76,7 +76,7 @@ public class DeleteUser extends AppCompatActivity {
     }
 
     private void deleteUser(){
-        ApiResponse apiResponse = UserService.deleteProfile(userSelected.getIdUsuario());
+        ApiResponse apiResponse = UserService.deleteProfile(userSelected);
         if (!apiResponse.isError()){
             Toast.makeText(getApplicationContext(), "Accion realizada con éxito", Toast.LENGTH_SHORT).show();
             ArrayAdapter<Usuario> adapterUserToDelete = (ArrayAdapter<Usuario>) spinnerUser.getAdapter();

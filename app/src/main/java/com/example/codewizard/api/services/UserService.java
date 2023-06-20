@@ -133,16 +133,16 @@ public class UserService {
 
     /**
      *
-     * @param idUsuario
+     * @param user
      * @return ApiResponse object
      */
-    public static ApiResponse deleteProfile(int idUsuario){
+    public static ApiResponse deleteProfile(Usuario user){
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 "api/users/deleteprofile",
                 HttpMethod.DELETE,
                 AUTH_METHOD,
                 CREDENTIALS,
-                idUsuario
+                user
         );
         ApiResponse apiResponse = new ApiResponse();
 

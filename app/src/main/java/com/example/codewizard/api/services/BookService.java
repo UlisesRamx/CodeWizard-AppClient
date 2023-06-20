@@ -88,16 +88,16 @@ public class BookService {
 
     /**
      *
-     * @param idLibro
+     * @param libro
      * @return ApiResponse object
      */
-    public static ApiResponse deleteBook(int idLibro){
+    public static ApiResponse deleteBook(Libro libro){
         CompletableFuture<ApiResponse> future = ApiClient.sendRequest(
                 "api/books/deletebook",
                 HttpMethod.DELETE,
                 AUTH_METHOD,
                 CREDENTIALS,
-                idLibro
+                libro
         );
         ApiResponse apiResponse = new ApiResponse();
 
